@@ -37,9 +37,12 @@ def extensions(includes):
 
 import re
 
-CONSTRUCT_CODE = set(['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32',
-                      's64', 'float', 'double'])
+CONSTRUCT_CODE = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32',
+                      's64', 'float', 'double']
 
+FORMAT_STR = ['%hhu', '%hu', '%u', '%lu', '%hhd', '%hd', '%d',
+                      '%ld', '%f', '%f']
+FORMAT_DICT = {x:y for x,y in zip(CONSTRUCT_CODE,FORMAT_STR)}
 COLLISIONS = set(['GnssSignal', 'GPSTime'])
 
 def convert(value):
@@ -68,6 +71,34 @@ def mk_id(field):
   else:
     return name
 
+def entirely_simple(struct):
+  is_simple = [f.type_id in CONSTRUCT_CODE for f in struct.fields]
+  if all(is_simple):
+    return True 
+  else:
+    return False 
+
+def mk_str_format(struct):
+  """Builds a sprintf string from a msg or class.
+  """
+  out_str = "\"{"
+  json = []
+  if entirely_simple(struct):
+    for field in struct.fields:
+      json.append(str(field.identifier + ": " + FORMAT_DICT[mk_id(field)]))
+  out_str += ", ".join(json)
+  out_str += "}\""
+  return out_str
+
+def mk_arg_list(struct):
+  """Builds the arg list for a sprintf like command.
+  """
+  args = [] 
+  if entirely_simple(struct):
+    for field in struct.fields:
+      args.append(str("in->" + field.identifier))
+  return ", ".join(args)
+  
 def mk_size(field):
   """Builds an identifier for a container type.
   """
@@ -87,6 +118,9 @@ JENV.filters['commentify'] = commentify
 JENV.filters['mk_id'] = mk_id
 JENV.filters['mk_size'] = mk_size
 JENV.filters['convert'] = convert
+JENV.filters['mk_str_format'] = mk_str_format 
+JENV.filters['mk_arg_list'] = mk_arg_list
+JENV.filters['entirely_simple'] = mk_arg_list
 
 def render_source(output_dir, package_spec):
   """

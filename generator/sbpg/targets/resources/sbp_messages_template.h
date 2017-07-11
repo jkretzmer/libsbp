@@ -48,8 +48,23 @@ typedef struct __attribute__((packed)) {
   ((*- endif *))
   ((*- endfor *))
 } (((m.identifier|convert)));
+((* if (m|entirely_simple) *))
+((*- if m.sbp_id *))
+#define MSG_((('%04X'|format(m.sbp_id))))_TO_JSON (((m.identifier|convert)))_to_json_str
 ((*- endif *))
+static inline int (((m.identifier|convert)))_to_json_str( (((m.identifier|convert))) * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, (((m|mk_str_format))), (((m|mk_arg_list))));
+ } 
+((*- else *))
+static inline int (((m.identifier|convert)))_to_json_str( (((m.identifier|convert))) * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ } 
 
+
+((*- endif *))
+((*- endif *))
 ((* endfor *))
 /** \} */
 
