@@ -38,6 +38,10 @@ typedef struct __attribute__((packed)) {
   char text[0];  /**< Human-readable string */
 } msg_log_t;
 
+static inline int msg_log_t_to_json_str( msg_log_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Wrapper for FWD a separate stream of information over SBP
  *
@@ -56,6 +60,10 @@ typedef struct __attribute__((packed)) {
   char fwd_payload[0]; /**< variable length wrapped binary message */
 } msg_fwd_t;
 
+static inline int msg_fwd_t_to_json_str( msg_fwd_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Tweet
  *
@@ -66,6 +74,10 @@ typedef struct __attribute__((packed)) {
   char tweet[140]; /**< Human-readable string */
 } msg_tweet_t;
 
+static inline int msg_tweet_t_to_json_str( msg_tweet_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated
  *
@@ -76,6 +88,10 @@ typedef struct __attribute__((packed)) {
   char text[0]; /**< Human-readable string */
 } msg_print_dep_t;
 
+static inline int msg_print_dep_t_to_json_str( msg_print_dep_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

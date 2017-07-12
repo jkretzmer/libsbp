@@ -40,6 +40,11 @@ typedef struct __attribute__((packed)) {
   u16 reserved;        /**< Reserved */
 } msg_startup_t;
 
+#define MSG_FF00_TO_JSON msg_startup_t_to_json_str
+static inline int msg_startup_t_to_json_str( msg_startup_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{cause: %hhu, startup_type: %hhu, reserved: %hu}", in->cause, in->startup_type, in->reserved);
+ }
 
 /** Status of received corrections
  *
@@ -55,6 +60,10 @@ typedef struct __attribute__((packed)) {
   char source[0];      /**< Corrections source string */
 } msg_dgnss_status_t;
 
+static inline int msg_dgnss_status_t_to_json_str( msg_dgnss_status_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** System heartbeat message
  *
@@ -74,6 +83,11 @@ typedef struct __attribute__((packed)) {
   u32 flags;    /**< Status flags */
 } msg_heartbeat_t;
 
+#define MSG_FFFF_TO_JSON msg_heartbeat_t_to_json_str
+static inline int msg_heartbeat_t_to_json_str( msg_heartbeat_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{flags: %u}", in->flags);
+ }
 
 /** \} */
 

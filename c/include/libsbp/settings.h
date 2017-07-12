@@ -39,7 +39,6 @@
  */
 #define SBP_MSG_SETTINGS_SAVE               0x00A1
 
-
 /** Write device configuration settings (host => device)
  *
 * The setting message writes the device configuration.
@@ -53,6 +52,10 @@ process to this message when it is received from sender ID
  */
 } msg_settings_write_t;
 
+static inline int msg_settings_write_t_to_json_str( msg_settings_write_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Read device configuration settings (host => device)
  *
@@ -66,6 +69,10 @@ this message when it is received from sender ID 0x42.
  */
 } msg_settings_read_req_t;
 
+static inline int msg_settings_read_req_t_to_json_str( msg_settings_read_req_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Read device configuration settings (host <= device)
  *
@@ -78,6 +85,10 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_read_resp_t;
 
+static inline int msg_settings_read_resp_t_to_json_str( msg_settings_read_resp_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Read setting by direct index (host => device)
  *
@@ -94,6 +105,11 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_read_by_index_req_t;
 
+#define MSG_00A2_TO_JSON msg_settings_read_by_index_req_t_to_json_str
+static inline int msg_settings_read_by_index_req_t_to_json_str( msg_settings_read_by_index_req_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{index: %hu}", in->index);
+ }
 
 /** Read setting by direct index (host <= device)
  *
@@ -112,13 +128,16 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_read_by_index_resp_t;
 
+static inline int msg_settings_read_by_index_resp_t_to_json_str( msg_settings_read_by_index_resp_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Finished reading settings (host <= device)
  *
  * The settings message for indicating end of the settings values.
  */
 #define SBP_MSG_SETTINGS_READ_BY_INDEX_DONE 0x00A6
-
 
 /** Register setting and default value (device => host)
  *
@@ -133,6 +152,10 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_register_t;
 
+static inline int msg_settings_register_t_to_json_str( msg_settings_register_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

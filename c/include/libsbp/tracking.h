@@ -72,6 +72,10 @@ signal is in continuous track.
   u8 misc_flags;      /**< Miscellaneous flags. */
 } msg_tracking_state_detailed_t;
 
+static inline int msg_tracking_state_detailed_t_to_json_str( msg_tracking_state_detailed_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Signal tracking channel state
  *
@@ -84,6 +88,10 @@ typedef struct __attribute__((packed)) {
   u8 cn0;    /**< Carrier-to-Noise density.  Zero implies invalid cn0. [dB Hz / 4] */
 } tracking_channel_state_t;
 
+static inline int tracking_channel_state_t_to_json_str( tracking_channel_state_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Signal tracking channel states
  *
@@ -96,6 +104,10 @@ typedef struct __attribute__((packed)) {
   tracking_channel_state_t states[0]; /**< Signal tracking channel state */
 } msg_tracking_state_t;
 
+static inline int msg_tracking_state_t_to_json_str( msg_tracking_state_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Complex correlation structure
  *
@@ -106,6 +118,10 @@ typedef struct __attribute__((packed)) {
   s32 Q;    /**< Quadrature correlation */
 } tracking_channel_correlation_t;
 
+static inline int tracking_channel_correlation_t_to_json_str( tracking_channel_correlation_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{I: %d, Q: %d}", in->I, in->Q);
+ }
 
 /** Tracking channel correlations
  *
@@ -119,6 +135,10 @@ typedef struct __attribute__((packed)) {
   tracking_channel_correlation_t corrs[3];   /**< Early, Prompt and Late correlations */
 } msg_tracking_iq_t;
 
+static inline int msg_tracking_iq_t_to_json_str( msg_tracking_iq_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated
  *
@@ -130,6 +150,10 @@ typedef struct __attribute__((packed)) {
   float cn0;      /**< Carrier-to-noise density [dB Hz] */
 } tracking_channel_state_dep_a_t;
 
+static inline int tracking_channel_state_dep_a_t_to_json_str( tracking_channel_state_dep_a_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{state: %hhu, prn: %hhu, cn0: %f}", in->state, in->prn, in->cn0);
+ }
 
 /** Deprecated
  *
@@ -140,6 +164,10 @@ typedef struct __attribute__((packed)) {
   tracking_channel_state_dep_a_t states[0]; /**< Satellite tracking channel state */
 } msg_tracking_state_dep_a_t;
 
+static inline int msg_tracking_state_dep_a_t_to_json_str( msg_tracking_state_dep_a_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated.
  *
@@ -151,6 +179,10 @@ typedef struct __attribute__((packed)) {
   float cn0;      /**< Carrier-to-noise density [dB Hz] */
 } tracking_channel_state_dep_b_t;
 
+static inline int tracking_channel_state_dep_b_t_to_json_str( tracking_channel_state_dep_b_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated.
  *
@@ -161,6 +193,10 @@ typedef struct __attribute__((packed)) {
   tracking_channel_state_dep_b_t states[0]; /**< Signal tracking channel state */
 } msg_tracking_state_dep_b_t;
 
+static inline int msg_tracking_state_dep_b_t_to_json_str( msg_tracking_state_dep_b_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

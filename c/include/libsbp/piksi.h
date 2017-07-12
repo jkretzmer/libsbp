@@ -36,14 +36,12 @@
  */
 #define SBP_MSG_ALMANAC            0x0069
 
-
 /** Send GPS time from host (host => Piksi)
  *
  * This message sets up timing functionality using a coarse GPS
  * time estimate sent by the host.
  */
 #define SBP_MSG_SET_TIME           0x0068
-
 
 /** Reset the device (host => Piksi)
  *
@@ -55,6 +53,11 @@ typedef struct __attribute__((packed)) {
   u32 flags;    /**< Reset flags */
 } msg_reset_t;
 
+#define MSG_00B6_TO_JSON msg_reset_t_to_json_str
+static inline int msg_reset_t_to_json_str( msg_reset_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{flags: %u}", in->flags);
+ }
 
 /** Reset the device (host => Piksi)
  *
@@ -62,7 +65,6 @@ typedef struct __attribute__((packed)) {
  * bootloader.
  */
 #define SBP_MSG_RESET_DEP          0x00B2
-
 
 /** Legacy message for CW interference channel (Piksi => host)
  *
@@ -72,7 +74,6 @@ typedef struct __attribute__((packed)) {
  */
 #define SBP_MSG_CW_RESULTS         0x00C0
 
-
 /** Legacy message for CW interference channel (host => Piksi)
  *
  * This is an unused legacy message from the host for starting
@@ -80,7 +81,6 @@ typedef struct __attribute__((packed)) {
  * be removed in a future release.
  */
 #define SBP_MSG_CW_START           0x00C1
-
 
 /** Reset IAR filters (host => Piksi)
  *
@@ -92,6 +92,11 @@ typedef struct __attribute__((packed)) {
   u8 filter;    /**< Filter flags */
 } msg_reset_filters_t;
 
+#define MSG_0022_TO_JSON msg_reset_filters_t_to_json_str
+static inline int msg_reset_filters_t_to_json_str( msg_reset_filters_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{filter: %hhu}", in->filter);
+ }
 
 /** Initialize IAR from known baseline (host => device)
  *
@@ -102,7 +107,6 @@ typedef struct __attribute__((packed)) {
  * observations between the two.
  */
 #define SBP_MSG_INIT_BASE          0x0023
-
 
 /** State of an RTOS thread
  *
@@ -119,6 +123,10 @@ typedef struct __attribute__((packed)) {
   u32 stack_free;    /**< Free stack space for this thread [bytes] */
 } msg_thread_state_t;
 
+static inline int msg_thread_state_t_to_json_str( msg_thread_state_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** State of the UART channel
  *
@@ -139,6 +147,10 @@ typedef struct __attribute__((packed)) {
  */
 } uart_channel_t;
 
+static inline int uart_channel_t_to_json_str( uart_channel_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{tx_throughput: %f, rx_throughput: %f, crc_error_count: %hu, io_error_count: %hu, tx_buffer_level: %hhu, rx_buffer_level: %hhu}", in->tx_throughput, in->rx_throughput, in->crc_error_count, in->io_error_count, in->tx_buffer_level, in->rx_buffer_level);
+ }
 
 /** base station observation message receipt period
  *
@@ -156,6 +168,10 @@ typedef struct __attribute__((packed)) {
   s32 current;    /**< Smoothed estimate of the current period [ms] */
 } period_t;
 
+static inline int period_t_to_json_str( period_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{avg: %d, pmin: %d, pmax: %d, current: %d}", in->avg, in->pmin, in->pmax, in->current);
+ }
 
 /** Receiver-to-base station latency
  *
@@ -172,6 +188,10 @@ typedef struct __attribute__((packed)) {
   s32 current;    /**< Smoothed estimate of the current latency [ms] */
 } latency_t;
 
+static inline int latency_t_to_json_str( latency_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{avg: %d, lmin: %d, lmax: %d, current: %d}", in->avg, in->lmin, in->lmax, in->current);
+ }
 
 /** State of the UART channels
  *
@@ -194,6 +214,10 @@ typedef struct __attribute__((packed)) {
   period_t obs_period;    /**< Observation receipt period */
 } msg_uart_state_t;
 
+static inline int msg_uart_state_t_to_json_str( msg_uart_state_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated
  *
@@ -207,6 +231,10 @@ typedef struct __attribute__((packed)) {
   latency_t latency;      /**< UART communication latency */
 } msg_uart_state_depa_t;
 
+static inline int msg_uart_state_depa_t_to_json_str( msg_uart_state_depa_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** State of the Integer Ambiguity Resolution (IAR) process
  *
@@ -220,6 +248,11 @@ typedef struct __attribute__((packed)) {
   u32 num_hyps;    /**< Number of integer ambiguity hypotheses remaining */
 } msg_iar_state_t;
 
+#define MSG_0019_TO_JSON msg_iar_state_t_to_json_str
+static inline int msg_iar_state_t_to_json_str( msg_iar_state_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{num_hyps: %u}", in->num_hyps);
+ }
 
 /** Mask a satellite from use in Piksi subsystems
  *
@@ -232,6 +265,10 @@ typedef struct __attribute__((packed)) {
   sbp_gnss_signal_t sid;     /**< GNSS signal for which the mask is applied */
 } msg_mask_satellite_t;
 
+static inline int msg_mask_satellite_t_to_json_str( msg_mask_satellite_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Device temperature and voltage levels
  *
@@ -248,6 +285,11 @@ typedef struct __attribute__((packed)) {
   s16 fe_temperature;     /**< Frontend temperature (if available) [degrees C / 100] */
 } msg_device_monitor_t;
 
+#define MSG_00B5_TO_JSON msg_device_monitor_t_to_json_str
+static inline int msg_device_monitor_t_to_json_str( msg_device_monitor_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{dev_vin: %hd, cpu_vint: %hd, cpu_vaux: %hd, cpu_temperature: %hd, fe_temperature: %hd}", in->dev_vin, in->cpu_vint, in->cpu_vaux, in->cpu_temperature, in->fe_temperature);
+ }
 
 /** Execute a command (host => device)
  *
@@ -261,6 +303,10 @@ typedef struct __attribute__((packed)) {
   char command[0];  /**< Command line to execute */
 } msg_command_req_t;
 
+static inline int msg_command_req_t_to_json_str( msg_command_req_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Exit code from executed command (device => host)
  *
@@ -273,6 +319,11 @@ typedef struct __attribute__((packed)) {
   s32 code;        /**< Exit code */
 } msg_command_resp_t;
 
+#define MSG_00B9_TO_JSON msg_command_resp_t_to_json_str
+static inline int msg_command_resp_t_to_json_str( msg_command_resp_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{sequence: %u, code: %d}", in->sequence, in->code);
+ }
 
 /** Command output
  *
@@ -287,6 +338,10 @@ typedef struct __attribute__((packed)) {
   char line[0];     /**< Line of standard output or standard error */
 } msg_command_output_t;
 
+static inline int msg_command_output_t_to_json_str( msg_command_output_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Request state of Piksi network interfaces
  *
@@ -294,7 +349,6 @@ typedef struct __attribute__((packed)) {
  * Output will be sent in MSG_NETWORK_STATE_RESP messages
  */
 #define SBP_MSG_NETWORK_STATE_REQ  0x00BA
-
 
 /** State of network interface
  *
@@ -314,6 +368,10 @@ typedef struct __attribute__((packed)) {
   u32 flags;             /**< Interface flags from SIOCGIFFLAGS */
 } msg_network_state_resp_t;
 
+static inline int msg_network_state_resp_t_to_json_str( msg_network_state_resp_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Spectrum analyzer
  *
@@ -335,6 +393,10 @@ typedef struct __attribute__((packed)) {
  */
 } msg_specan_t;
 
+static inline int msg_specan_t_to_json_str( msg_specan_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

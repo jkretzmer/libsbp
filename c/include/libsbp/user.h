@@ -36,6 +36,10 @@ typedef struct __attribute__((packed)) {
   u8 contents[0]; /**< User data payload */
 } msg_user_data_t;
 
+static inline int msg_user_data_t_to_json_str( msg_user_data_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

@@ -43,6 +43,10 @@ typedef struct __attribute__((packed)) {
   sbp_gnss_signal_t sid;    /**< GNSS signal for which acquisition was attempted */
 } msg_acq_result_t;
 
+static inline int msg_acq_result_t_to_json_str( msg_acq_result_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated
  *
@@ -58,6 +62,10 @@ be in units of dB Hz in a later revision of this message.
   sbp_gnss_signal_t sid;    /**< GNSS signal for which acquisition was attempted */
 } msg_acq_result_dep_b_t;
 
+static inline int msg_acq_result_dep_b_t_to_json_str( msg_acq_result_dep_b_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated
  *
@@ -75,6 +83,11 @@ acquisition was attempted
  */
 } msg_acq_result_dep_a_t;
 
+#define MSG_0015_TO_JSON msg_acq_result_dep_a_t_to_json_str
+static inline int msg_acq_result_dep_a_t_to_json_str( msg_acq_result_dep_a_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{snr: %f, cp: %f, cf: %f, prn: %hhu}", in->snr, in->cp, in->cf, in->prn);
+ }
 
 /** Acq perfomance measurement and debug
  *
@@ -97,6 +110,10 @@ typedef struct __attribute__((packed)) {
   u32 cp;            /**< Codephase of detected peak. Only valid if status is '1' [chips*10] */
 } acq_sv_profile_t;
 
+static inline int acq_sv_profile_t_to_json_str( acq_sv_profile_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Acquisition perfomance measurement and debug
  *
@@ -108,6 +125,10 @@ typedef struct __attribute__((packed)) {
   acq_sv_profile_t acq_sv_profile[0]; /**< SV profiles during acquisition time */
 } msg_acq_sv_profile_t;
 
+static inline int msg_acq_sv_profile_t_to_json_str( msg_acq_sv_profile_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

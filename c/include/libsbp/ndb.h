@@ -55,6 +55,10 @@ of other data_source.
  */
 } msg_ndb_event_t;
 
+static inline int msg_ndb_event_t_to_json_str( msg_ndb_event_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

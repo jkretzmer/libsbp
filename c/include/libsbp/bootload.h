@@ -38,7 +38,6 @@
  */
 #define SBP_MSG_BOOTLOADER_HANDSHAKE_REQ   0x00B3
 
-
 /** Bootloading handshake response (host <= device)
  *
  * The handshake message response from the device establishes a
@@ -53,6 +52,10 @@ typedef struct __attribute__((packed)) {
   char version[0]; /**< Bootloader version number */
 } msg_bootloader_handshake_resp_t;
 
+static inline int msg_bootloader_handshake_resp_t_to_json_str( msg_bootloader_handshake_resp_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Bootloader jump to application (host => device)
  *
@@ -63,6 +66,11 @@ typedef struct __attribute__((packed)) {
   u8 jump;    /**< Ignored by the device */
 } msg_bootloader_jump_to_app_t;
 
+#define MSG_00B1_TO_JSON msg_bootloader_jump_to_app_t_to_json_str
+static inline int msg_bootloader_jump_to_app_t_to_json_str( msg_bootloader_jump_to_app_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{jump: %hhu}", in->jump);
+ }
 
 /** Read FPGA device ID over UART request (host => device)
  *
@@ -74,7 +82,6 @@ typedef struct __attribute__((packed)) {
  * and not related to the Piksi's serial number.
  */
 #define SBP_MSG_NAP_DEVICE_DNA_REQ         0x00DE
-
 
 /** Read FPGA device ID over UART response (host <= device)
  *
@@ -92,6 +99,10 @@ on the right.
  */
 } msg_nap_device_dna_resp_t;
 
+static inline int msg_nap_device_dna_resp_t_to_json_str( msg_nap_device_dna_resp_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** Deprecated
  *
@@ -102,6 +113,10 @@ typedef struct __attribute__((packed)) {
   u8 handshake[0]; /**< Version number string (not NULL terminated) */
 } msg_bootloader_handshake_dep_a_t;
 
+static inline int msg_bootloader_handshake_dep_a_t_to_json_str( msg_bootloader_handshake_dep_a_t * in, char* out_str, int max_len) {
+  (void) max_len; (void) in; (void) out_str; 
+  return 0;
+ }
 
 /** \} */
 

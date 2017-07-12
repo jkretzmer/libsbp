@@ -35,6 +35,10 @@ typedef struct __attribute__((packed)) {
   u8 code;    /**< Signal constellation, band and code */
 } gnss_signal16_t;
 
+static inline int gnss_signal16_t_to_json_str( gnss_signal16_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{sat: %hhu, code: %hhu}", in->sat, in->code);
+ }
 
 /** Represents all the relevant information about the signal
  *
@@ -50,6 +54,10 @@ Note: unlike GnssSignal16, GPS satellites are encoded as
   u8 reserved;    /**< Reserved */
 } sbp_gnss_signal_t;
 
+static inline int sbp_gnss_signal_t_to_json_str( sbp_gnss_signal_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{sat: %hu, code: %hhu, reserved: %hhu}", in->sat, in->code, in->reserved);
+ }
 
 /** Millisecond-accurate GPS time
  *
@@ -62,6 +70,10 @@ typedef struct __attribute__((packed)) {
   u16 wn;     /**< GPS week number [week] */
 } sbp_gps_time_t;
 
+static inline int sbp_gps_time_t_to_json_str( sbp_gps_time_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{tow: %u, wn: %hu}", in->tow, in->wn);
+ }
 
 /** Whole second accurate GPS time
  *
@@ -74,6 +86,10 @@ typedef struct __attribute__((packed)) {
   u16 wn;     /**< GPS week number [week] */
 } gps_time_sec_t;
 
+static inline int gps_time_sec_t_to_json_str( gps_time_sec_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{tow: %u, wn: %hu}", in->tow, in->wn);
+ }
 
 /** Nanosecond-accurate receiver clock time
  *
@@ -90,6 +106,10 @@ from -500000 to 500000)
   u16 wn;             /**< GPS week number [week] */
 } gps_time_nano_t;
 
+static inline int gps_time_nano_t_to_json_str( gps_time_nano_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{tow: %u, ns_residual: %d, wn: %hu}", in->tow, in->ns_residual, in->wn);
+ }
 
 /** GNSS carrier phase measurement.
  *
@@ -103,6 +123,10 @@ typedef struct __attribute__((packed)) {
   u8 f;    /**< Carrier phase fractional part [cycles / 256] */
 } carrier_phase_t;
 
+static inline int carrier_phase_t_to_json_str( carrier_phase_t * in, char* out_str, int max_len) {
+  (void) max_len;
+  return sprintf(out_str, "{i: %d, f: %hhu}", in->i, in->f);
+ }
 
 /** \} */
 
