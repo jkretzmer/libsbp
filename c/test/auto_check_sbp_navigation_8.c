@@ -132,6 +132,9 @@ START_TEST( test_auto_check_sbp_navigation_8 )
     fail_unless(msg->hdop == 5, "incorrect value for hdop, expected 5, is %d", msg->hdop);
     fail_unless(msg->tow == 100, "incorrect value for tow, expected 100, is %d", msg->tow);
     fail_unless(msg->pdop == 6, "incorrect value for pdop, expected 6, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_t_to_json_str( ( msg_dops_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

@@ -133,6 +133,9 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.4290689091*100) < 0.05, "incorrect value for lat, expected 37.4290689091, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -181,6 +184,9 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless(msg->flags == 1, "incorrect value for flags, expected 1, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.4290643089*100) < 0.05, "incorrect value for lat, expected 37.4290643089, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -229,6 +235,9 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.4290544776*100) < 0.05, "incorrect value for lat, expected 37.4290544776, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -277,6 +286,9 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless(msg->flags == 1, "incorrect value for flags, expected 1, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.4290633739*100) < 0.05, "incorrect value for lat, expected 37.4290633739, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -325,6 +337,9 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.4290765936*100) < 0.05, "incorrect value for lat, expected 37.4290765936, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

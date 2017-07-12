@@ -127,6 +127,9 @@ START_TEST( test_auto_check_sbp_navigation_3 )
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->age == 30, "incorrect value for age, expected 30, is %d", msg->age);
     fail_unless(msg->tow == 100, "incorrect value for tow, expected 100, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_age_corrections_t_to_json_str( ( msg_age_corrections_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

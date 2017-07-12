@@ -133,6 +133,9 @@ START_TEST( test_auto_check_sbp_navigation_6 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -1681229, "incorrect value for e, expected -1681229, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_t_to_json_str( ( msg_baseline_ned_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -181,6 +184,9 @@ START_TEST( test_auto_check_sbp_navigation_6 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -1681214, "incorrect value for e, expected -1681214, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_t_to_json_str( ( msg_baseline_ned_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -229,6 +235,9 @@ START_TEST( test_auto_check_sbp_navigation_6 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -1681235, "incorrect value for e, expected -1681235, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_t_to_json_str( ( msg_baseline_ned_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -277,6 +286,9 @@ START_TEST( test_auto_check_sbp_navigation_6 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -1681357, "incorrect value for e, expected -1681357, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_t_to_json_str( ( msg_baseline_ned_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -325,6 +337,9 @@ START_TEST( test_auto_check_sbp_navigation_6 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -1681444, "incorrect value for e, expected -1681444, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_t_to_json_str( ( msg_baseline_ned_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

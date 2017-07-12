@@ -129,6 +129,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->ns_residual == -224401, "incorrect value for ns_residual, expected -224401, is %d", msg->ns_residual);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->tow == 407084500, "incorrect value for tow, expected 407084500, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_gps_time_dep_a_t_to_json_str( ( msg_gps_time_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -173,6 +176,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->ns_residual == 223085, "incorrect value for ns_residual, expected 223085, is %d", msg->ns_residual);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->tow == 407084600, "incorrect value for tow, expected 407084600, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_gps_time_dep_a_t_to_json_str( ( msg_gps_time_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -217,6 +223,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->ns_residual == -222999, "incorrect value for ns_residual, expected -222999, is %d", msg->ns_residual);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->tow == 407084700, "incorrect value for tow, expected 407084700, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_gps_time_dep_a_t_to_json_str( ( msg_gps_time_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -261,6 +270,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->ns_residual == 236272, "incorrect value for ns_residual, expected 236272, is %d", msg->ns_residual);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->tow == 407084800, "incorrect value for tow, expected 407084800, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_gps_time_dep_a_t_to_json_str( ( msg_gps_time_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -305,6 +317,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->ns_residual == -236144, "incorrect value for ns_residual, expected -236144, is %d", msg->ns_residual);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->tow == 407084900, "incorrect value for tow, expected 407084900, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_gps_time_dep_a_t_to_json_str( ( msg_gps_time_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -349,6 +364,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->ns_residual == -334131, "incorrect value for ns_residual, expected -334131, is %d", msg->ns_residual);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->tow == 407151150, "incorrect value for tow, expected 407151150, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_gps_time_dep_a_t_to_json_str( ( msg_gps_time_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -390,12 +408,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless((msg->x*100 - -2704376.01104*100) < 0.05, "incorrect value for x, expected -2704376.01104, is %f", msg->x);
-    fail_unless((msg->y*100 - -4263209.75323*100) < 0.05, "incorrect value for y, expected -4263209.75323, is %f", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless((msg->z*100 - 3884633.14208*100) < 0.05, "incorrect value for z, expected 3884633.14208, is %f", msg->z);
-    fail_unless(msg->tow == 407084500, "incorrect value for tow, expected 407084500, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless((msg->y*100 - -4263209.75323*100) < 0.05, "incorrect value for y, expected -4263209.75323, is %f", msg->y);
+    fail_unless((msg->x*100 - -2704376.01104*100) < 0.05, "incorrect value for x, expected -2704376.01104, is %f", msg->x);
+    fail_unless((msg->z*100 - 3884633.14208*100) < 0.05, "incorrect value for z, expected 3884633.14208, is %f", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084500, "incorrect value for tow, expected 407084500, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -437,12 +458,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless((msg->x*100 - -2704375.9287*100) < 0.05, "incorrect value for x, expected -2704375.9287, is %f", msg->x);
-    fail_unless((msg->y*100 - -4263208.61044*100) < 0.05, "incorrect value for y, expected -4263208.61044, is %f", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless((msg->z*100 - 3884632.62716*100) < 0.05, "incorrect value for z, expected 3884632.62716, is %f", msg->z);
-    fail_unless(msg->tow == 407084600, "incorrect value for tow, expected 407084600, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless((msg->y*100 - -4263208.61044*100) < 0.05, "incorrect value for y, expected -4263208.61044, is %f", msg->y);
+    fail_unless((msg->x*100 - -2704375.9287*100) < 0.05, "incorrect value for x, expected -2704375.9287, is %f", msg->x);
+    fail_unless((msg->z*100 - 3884632.62716*100) < 0.05, "incorrect value for z, expected 3884632.62716, is %f", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084600, "incorrect value for tow, expected 407084600, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -484,12 +508,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless((msg->x*100 - -2704375.16279*100) < 0.05, "incorrect value for x, expected -2704375.16279, is %f", msg->x);
-    fail_unless((msg->y*100 - -4263207.37064*100) < 0.05, "incorrect value for y, expected -4263207.37064, is %f", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless((msg->z*100 - 3884631.28242*100) < 0.05, "incorrect value for z, expected 3884631.28242, is %f", msg->z);
-    fail_unless(msg->tow == 407084700, "incorrect value for tow, expected 407084700, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless((msg->y*100 - -4263207.37064*100) < 0.05, "incorrect value for y, expected -4263207.37064, is %f", msg->y);
+    fail_unless((msg->x*100 - -2704375.16279*100) < 0.05, "incorrect value for x, expected -2704375.16279, is %f", msg->x);
+    fail_unless((msg->z*100 - 3884631.28242*100) < 0.05, "incorrect value for z, expected 3884631.28242, is %f", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084700, "incorrect value for tow, expected 407084700, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -531,12 +558,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless((msg->x*100 - -2704376.35499*100) < 0.05, "incorrect value for x, expected -2704376.35499, is %f", msg->x);
-    fail_unless((msg->y*100 - -4263207.96525*100) < 0.05, "incorrect value for y, expected -4263207.96525, is %f", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless((msg->z*100 - 3884632.10071*100) < 0.05, "incorrect value for z, expected 3884632.10071, is %f", msg->z);
-    fail_unless(msg->tow == 407084800, "incorrect value for tow, expected 407084800, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless((msg->y*100 - -4263207.96525*100) < 0.05, "incorrect value for y, expected -4263207.96525, is %f", msg->y);
+    fail_unless((msg->x*100 - -2704376.35499*100) < 0.05, "incorrect value for x, expected -2704376.35499, is %f", msg->x);
+    fail_unless((msg->z*100 - 3884632.10071*100) < 0.05, "incorrect value for z, expected 3884632.10071, is %f", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084800, "incorrect value for tow, expected 407084800, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -578,12 +608,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless((msg->x*100 - -2704375.29129*100) < 0.05, "incorrect value for x, expected -2704375.29129, is %f", msg->x);
-    fail_unless((msg->y*100 - -4263207.31475*100) < 0.05, "incorrect value for y, expected -4263207.31475, is %f", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless((msg->z*100 - 3884631.47733*100) < 0.05, "incorrect value for z, expected 3884631.47733, is %f", msg->z);
-    fail_unless(msg->tow == 407084900, "incorrect value for tow, expected 407084900, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless((msg->y*100 - -4263207.31475*100) < 0.05, "incorrect value for y, expected -4263207.31475, is %f", msg->y);
+    fail_unless((msg->x*100 - -2704375.29129*100) < 0.05, "incorrect value for x, expected -2704375.29129, is %f", msg->x);
+    fail_unless((msg->z*100 - 3884631.47733*100) < 0.05, "incorrect value for z, expected 3884631.47733, is %f", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084900, "incorrect value for tow, expected 407084900, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -625,12 +658,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 5, "incorrect value for n_sats, expected 5, is %d", msg->n_sats);
-    fail_unless((msg->x*100 - -2704375.68369*100) < 0.05, "incorrect value for x, expected -2704375.68369, is %f", msg->x);
-    fail_unless((msg->y*100 - -4263209.48233*100) < 0.05, "incorrect value for y, expected -4263209.48233, is %f", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless((msg->z*100 - 3884635.51181*100) < 0.05, "incorrect value for z, expected 3884635.51181, is %f", msg->z);
-    fail_unless(msg->tow == 407151150, "incorrect value for tow, expected 407151150, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless((msg->y*100 - -4263209.48233*100) < 0.05, "incorrect value for y, expected -4263209.48233, is %f", msg->y);
+    fail_unless((msg->x*100 - -2704375.68369*100) < 0.05, "incorrect value for x, expected -2704375.68369, is %f", msg->x);
+    fail_unless((msg->z*100 - 3884635.51181*100) < 0.05, "incorrect value for z, expected 3884635.51181, is %f", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407151150, "incorrect value for tow, expected 407151150, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -672,12 +708,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 6, "incorrect value for n_sats, expected 6, is %d", msg->n_sats);
-    fail_unless(msg->x == -6231, "incorrect value for x, expected -6231, is %d", msg->x);
-    fail_unless(msg->y == -12186, "incorrect value for y, expected -12186, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 7419, "incorrect value for z, expected 7419, is %d", msg->z);
-    fail_unless(msg->tow == 407180700, "incorrect value for tow, expected 407180700, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -12186, "incorrect value for y, expected -12186, is %d", msg->y);
+    fail_unless(msg->x == -6231, "incorrect value for x, expected -6231, is %d", msg->x);
+    fail_unless(msg->z == 7419, "incorrect value for z, expected 7419, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407180700, "incorrect value for tow, expected 407180700, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ecef_dep_a_t_to_json_str( ( msg_baseline_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -719,12 +758,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 6, "incorrect value for n_sats, expected 6, is %d", msg->n_sats);
-    fail_unless(msg->x == -6231, "incorrect value for x, expected -6231, is %d", msg->x);
-    fail_unless(msg->y == -12185, "incorrect value for y, expected -12185, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 7420, "incorrect value for z, expected 7420, is %d", msg->z);
-    fail_unless(msg->tow == 407180800, "incorrect value for tow, expected 407180800, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -12185, "incorrect value for y, expected -12185, is %d", msg->y);
+    fail_unless(msg->x == -6231, "incorrect value for x, expected -6231, is %d", msg->x);
+    fail_unless(msg->z == 7420, "incorrect value for z, expected 7420, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407180800, "incorrect value for tow, expected 407180800, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ecef_dep_a_t_to_json_str( ( msg_baseline_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -766,12 +808,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 6, "incorrect value for n_sats, expected 6, is %d", msg->n_sats);
-    fail_unless(msg->x == -8162, "incorrect value for x, expected -8162, is %d", msg->x);
-    fail_unless(msg->y == -18496, "incorrect value for y, expected -18496, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 13807, "incorrect value for z, expected 13807, is %d", msg->z);
-    fail_unless(msg->tow == 407180900, "incorrect value for tow, expected 407180900, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -18496, "incorrect value for y, expected -18496, is %d", msg->y);
+    fail_unless(msg->x == -8162, "incorrect value for x, expected -8162, is %d", msg->x);
+    fail_unless(msg->z == 13807, "incorrect value for z, expected 13807, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407180900, "incorrect value for tow, expected 407180900, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ecef_dep_a_t_to_json_str( ( msg_baseline_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -813,12 +858,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 6, "incorrect value for n_sats, expected 6, is %d", msg->n_sats);
-    fail_unless(msg->x == -8164, "incorrect value for x, expected -8164, is %d", msg->x);
-    fail_unless(msg->y == -18497, "incorrect value for y, expected -18497, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 13810, "incorrect value for z, expected 13810, is %d", msg->z);
-    fail_unless(msg->tow == 407181000, "incorrect value for tow, expected 407181000, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -18497, "incorrect value for y, expected -18497, is %d", msg->y);
+    fail_unless(msg->x == -8164, "incorrect value for x, expected -8164, is %d", msg->x);
+    fail_unless(msg->z == 13810, "incorrect value for z, expected 13810, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407181000, "incorrect value for tow, expected 407181000, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ecef_dep_a_t_to_json_str( ( msg_baseline_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -860,12 +908,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 6, "incorrect value for n_sats, expected 6, is %d", msg->n_sats);
-    fail_unless(msg->x == -7400, "incorrect value for x, expected -7400, is %d", msg->x);
-    fail_unless(msg->y == -15591, "incorrect value for y, expected -15591, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 15257, "incorrect value for z, expected 15257, is %d", msg->z);
-    fail_unless(msg->tow == 407181100, "incorrect value for tow, expected 407181100, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -15591, "incorrect value for y, expected -15591, is %d", msg->y);
+    fail_unless(msg->x == -7400, "incorrect value for x, expected -7400, is %d", msg->x);
+    fail_unless(msg->z == 15257, "incorrect value for z, expected 15257, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407181100, "incorrect value for tow, expected 407181100, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ecef_dep_a_t_to_json_str( ( msg_baseline_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -907,12 +958,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 6, "incorrect value for n_sats, expected 6, is %d", msg->n_sats);
-    fail_unless(msg->x == -7401, "incorrect value for x, expected -7401, is %d", msg->x);
-    fail_unless(msg->y == -15591, "incorrect value for y, expected -15591, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 15257, "incorrect value for z, expected 15257, is %d", msg->z);
-    fail_unless(msg->tow == 407181200, "incorrect value for tow, expected 407181200, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -15591, "incorrect value for y, expected -15591, is %d", msg->y);
+    fail_unless(msg->x == -7401, "incorrect value for x, expected -7401, is %d", msg->x);
+    fail_unless(msg->z == 15257, "incorrect value for z, expected 15257, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407181200, "incorrect value for tow, expected 407181200, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ecef_dep_a_t_to_json_str( ( msg_baseline_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -961,6 +1015,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 1265, "incorrect value for e, expected 1265, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_dep_a_t_to_json_str( ( msg_baseline_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1009,6 +1066,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 1265, "incorrect value for e, expected 1265, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_dep_a_t_to_json_str( ( msg_baseline_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1057,6 +1117,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 3015, "incorrect value for e, expected 3015, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_dep_a_t_to_json_str( ( msg_baseline_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1105,6 +1168,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 3015, "incorrect value for e, expected 3015, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_dep_a_t_to_json_str( ( msg_baseline_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1153,6 +1219,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 2103, "incorrect value for e, expected 2103, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_dep_a_t_to_json_str( ( msg_baseline_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1201,6 +1270,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 2102, "incorrect value for e, expected 2102, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_baseline_ned_dep_a_t_to_json_str( ( msg_baseline_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1242,12 +1314,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless(msg->x == 24, "incorrect value for x, expected 24, is %d", msg->x);
-    fail_unless(msg->y == -11, "incorrect value for y, expected -11, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == -37, "incorrect value for z, expected -37, is %d", msg->z);
-    fail_unless(msg->tow == 407084500, "incorrect value for tow, expected 407084500, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -11, "incorrect value for y, expected -11, is %d", msg->y);
+    fail_unless(msg->x == 24, "incorrect value for x, expected 24, is %d", msg->x);
+    fail_unless(msg->z == -37, "incorrect value for z, expected -37, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084500, "incorrect value for tow, expected 407084500, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_vel_ecef_dep_a_t_to_json_str( ( msg_vel_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1289,12 +1364,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless(msg->x == 4, "incorrect value for x, expected 4, is %d", msg->x);
-    fail_unless(msg->y == -22, "incorrect value for y, expected -22, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 18, "incorrect value for z, expected 18, is %d", msg->z);
-    fail_unless(msg->tow == 407084600, "incorrect value for tow, expected 407084600, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -22, "incorrect value for y, expected -22, is %d", msg->y);
+    fail_unless(msg->x == 4, "incorrect value for x, expected 4, is %d", msg->x);
+    fail_unless(msg->z == 18, "incorrect value for z, expected 18, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084600, "incorrect value for tow, expected 407084600, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_vel_ecef_dep_a_t_to_json_str( ( msg_vel_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1336,12 +1414,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless(msg->x == -26, "incorrect value for x, expected -26, is %d", msg->x);
-    fail_unless(msg->y == 4, "incorrect value for y, expected 4, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 1, "incorrect value for z, expected 1, is %d", msg->z);
-    fail_unless(msg->tow == 407084700, "incorrect value for tow, expected 407084700, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == 4, "incorrect value for y, expected 4, is %d", msg->y);
+    fail_unless(msg->x == -26, "incorrect value for x, expected -26, is %d", msg->x);
+    fail_unless(msg->z == 1, "incorrect value for z, expected 1, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084700, "incorrect value for tow, expected 407084700, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_vel_ecef_dep_a_t_to_json_str( ( msg_vel_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1383,12 +1464,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless(msg->x == -9, "incorrect value for x, expected -9, is %d", msg->x);
-    fail_unless(msg->y == -19, "incorrect value for y, expected -19, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 28, "incorrect value for z, expected 28, is %d", msg->z);
-    fail_unless(msg->tow == 407084800, "incorrect value for tow, expected 407084800, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -19, "incorrect value for y, expected -19, is %d", msg->y);
+    fail_unless(msg->x == -9, "incorrect value for x, expected -9, is %d", msg->x);
+    fail_unless(msg->z == 28, "incorrect value for z, expected 28, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084800, "incorrect value for tow, expected 407084800, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_vel_ecef_dep_a_t_to_json_str( ( msg_vel_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1430,12 +1514,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 8, "incorrect value for n_sats, expected 8, is %d", msg->n_sats);
-    fail_unless(msg->x == -1, "incorrect value for x, expected -1, is %d", msg->x);
-    fail_unless(msg->y == 2, "incorrect value for y, expected 2, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == -11, "incorrect value for z, expected -11, is %d", msg->z);
-    fail_unless(msg->tow == 407084900, "incorrect value for tow, expected 407084900, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == 2, "incorrect value for y, expected 2, is %d", msg->y);
+    fail_unless(msg->x == -1, "incorrect value for x, expected -1, is %d", msg->x);
+    fail_unless(msg->z == -11, "incorrect value for z, expected -11, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407084900, "incorrect value for tow, expected 407084900, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_vel_ecef_dep_a_t_to_json_str( ( msg_vel_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1477,12 +1564,15 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
     fail_unless(msg->n_sats == 5, "incorrect value for n_sats, expected 5, is %d", msg->n_sats);
-    fail_unless(msg->x == -49, "incorrect value for x, expected -49, is %d", msg->x);
-    fail_unless(msg->y == -71, "incorrect value for y, expected -71, is %d", msg->y);
-    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
-    fail_unless(msg->z == 65, "incorrect value for z, expected 65, is %d", msg->z);
-    fail_unless(msg->tow == 407151150, "incorrect value for tow, expected 407151150, is %d", msg->tow);
     fail_unless(msg->accuracy == 0, "incorrect value for accuracy, expected 0, is %d", msg->accuracy);
+    fail_unless(msg->y == -71, "incorrect value for y, expected -71, is %d", msg->y);
+    fail_unless(msg->x == -49, "incorrect value for x, expected -49, is %d", msg->x);
+    fail_unless(msg->z == 65, "incorrect value for z, expected 65, is %d", msg->z);
+    fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->tow == 407151150, "incorrect value for tow, expected 407151150, is %d", msg->tow);
+    // print to string
+    char test_str[1024];
+    msg_vel_ecef_dep_a_t_to_json_str( ( msg_vel_ecef_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1531,6 +1621,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 26, "incorrect value for e, expected 26, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1579,6 +1672,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 15, "incorrect value for e, expected 15, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1627,6 +1723,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -24, "incorrect value for e, expected -24, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1675,6 +1774,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == 2, "incorrect value for e, expected 2, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1723,6 +1825,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -2, "incorrect value for e, expected -2, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1771,6 +1876,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless(msg->e == -3, "incorrect value for e, expected -3, is %d", msg->e);
+    // print to string
+    char test_str[1024];
+    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1817,6 +1925,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->hdop == 273, "incorrect value for hdop, expected 273, is %d", msg->hdop);
     fail_unless(msg->tow == 407084500, "incorrect value for tow, expected 407084500, is %d", msg->tow);
     fail_unless(msg->pdop == 215, "incorrect value for pdop, expected 215, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1863,6 +1974,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->hdop == 0, "incorrect value for hdop, expected 0, is %d", msg->hdop);
     fail_unless(msg->tow == 0, "incorrect value for tow, expected 0, is %d", msg->tow);
     fail_unless(msg->pdop == 65535, "incorrect value for pdop, expected 65535, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1909,6 +2023,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->hdop == 637, "incorrect value for hdop, expected 637, is %d", msg->hdop);
     fail_unless(msg->tow == 407152000, "incorrect value for tow, expected 407152000, is %d", msg->tow);
     fail_unless(msg->pdop == 312, "incorrect value for pdop, expected 312, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -1955,6 +2072,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->hdop == 637, "incorrect value for hdop, expected 637, is %d", msg->hdop);
     fail_unless(msg->tow == 407153000, "incorrect value for tow, expected 407153000, is %d", msg->tow);
     fail_unless(msg->pdop == 311, "incorrect value for pdop, expected 311, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2001,6 +2121,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->hdop == 637, "incorrect value for hdop, expected 637, is %d", msg->hdop);
     fail_unless(msg->tow == 407154000, "incorrect value for tow, expected 407154000, is %d", msg->tow);
     fail_unless(msg->pdop == 311, "incorrect value for pdop, expected 311, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2047,6 +2170,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->hdop == 637, "incorrect value for hdop, expected 637, is %d", msg->hdop);
     fail_unless(msg->tow == 407155000, "incorrect value for tow, expected 407155000, is %d", msg->tow);
     fail_unless(msg->pdop == 311, "incorrect value for pdop, expected 311, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2095,6 +2221,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.7624217142*100) < 0.05, "incorrect value for lat, expected 37.7624217142, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2143,6 +2272,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.7624236142*100) < 0.05, "incorrect value for lat, expected 37.7624236142, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2191,6 +2323,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.7624220761*100) < 0.05, "incorrect value for lat, expected 37.7624220761, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2239,6 +2374,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.7624216106*100) < 0.05, "incorrect value for lat, expected 37.7624216106, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2287,6 +2425,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.762423345*100) < 0.05, "incorrect value for lat, expected 37.762423345, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -2335,6 +2476,9 @@ START_TEST( test_auto_check_sbp_navigation_35 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     fail_unless(msg->h_accuracy == 0, "incorrect value for h_accuracy, expected 0, is %d", msg->h_accuracy);
     fail_unless((msg->lat*100 - 37.7624408225*100) < 0.05, "incorrect value for lat, expected 37.7624408225, is %f", msg->lat);
+    // print to string
+    char test_str[1024];
+    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

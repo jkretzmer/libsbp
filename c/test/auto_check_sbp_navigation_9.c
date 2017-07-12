@@ -131,6 +131,9 @@ START_TEST( test_auto_check_sbp_navigation_9 )
     fail_unless(msg->hdop == 160, "incorrect value for hdop, expected 160, is %d", msg->hdop);
     fail_unless(msg->tow == 2568200, "incorrect value for tow, expected 2568200, is %d", msg->tow);
     fail_unless(msg->pdop == 190, "incorrect value for pdop, expected 190, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -177,6 +180,9 @@ START_TEST( test_auto_check_sbp_navigation_9 )
     fail_unless(msg->hdop == 160, "incorrect value for hdop, expected 160, is %d", msg->hdop);
     fail_unless(msg->tow == 2569200, "incorrect value for tow, expected 2569200, is %d", msg->tow);
     fail_unless(msg->pdop == 190, "incorrect value for pdop, expected 190, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -223,6 +229,9 @@ START_TEST( test_auto_check_sbp_navigation_9 )
     fail_unless(msg->hdop == 160, "incorrect value for hdop, expected 160, is %d", msg->hdop);
     fail_unless(msg->tow == 2570200, "incorrect value for tow, expected 2570200, is %d", msg->tow);
     fail_unless(msg->pdop == 190, "incorrect value for pdop, expected 190, is %d", msg->pdop);
+    // print to string
+    char test_str[1024];
+    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

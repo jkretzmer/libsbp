@@ -129,6 +129,9 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless((msg->snr*100 - 14.5*100) < 0.05, "incorrect value for snr, expected 14.5, is %f", msg->snr);
     fail_unless((msg->cf*100 - 8241.94335938*100) < 0.05, "incorrect value for cf, expected 8241.94335938, is %f", msg->cf);
     fail_unless(msg->prn == 8, "incorrect value for prn, expected 8, is %d", msg->prn);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -173,6 +176,9 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless((msg->snr*100 - 15.3000001907*100) < 0.05, "incorrect value for snr, expected 15.3000001907, is %f", msg->snr);
     fail_unless((msg->cf*100 - 749.26763916*100) < 0.05, "incorrect value for cf, expected 749.26763916, is %f", msg->cf);
     fail_unless(msg->prn == 9, "incorrect value for prn, expected 9, is %d", msg->prn);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -217,6 +223,9 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless((msg->snr*100 - 18.1000003815*100) < 0.05, "incorrect value for snr, expected 18.1000003815, is %f", msg->snr);
     fail_unless((msg->cf*100 - -6493.65283203*100) < 0.05, "incorrect value for cf, expected -6493.65283203, is %f", msg->cf);
     fail_unless(msg->prn == 11, "incorrect value for prn, expected 11, is %d", msg->prn);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -261,6 +270,9 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless((msg->snr*100 - 15.3000001907*100) < 0.05, "incorrect value for snr, expected 15.3000001907, is %f", msg->snr);
     fail_unless((msg->cf*100 - -999.023498535*100) < 0.05, "incorrect value for cf, expected -999.023498535, is %f", msg->cf);
     fail_unless(msg->prn == 12, "incorrect value for prn, expected 12, is %d", msg->prn);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -305,6 +317,9 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless((msg->snr*100 - 15.3000001907*100) < 0.05, "incorrect value for snr, expected 15.3000001907, is %f", msg->snr);
     fail_unless((msg->cf*100 - 4745.36132812*100) < 0.05, "incorrect value for cf, expected 4745.36132812, is %f", msg->cf);
     fail_unless(msg->prn == 14, "incorrect value for prn, expected 14, is %d", msg->prn);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -349,6 +364,9 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless((msg->snr*100 - 163.222229004*100) < 0.05, "incorrect value for snr, expected 163.222229004, is %f", msg->snr);
     fail_unless((msg->cf*100 - -499.511749268*100) < 0.05, "incorrect value for cf, expected -499.511749268, is %f", msg->cf);
     fail_unless(msg->prn == 0, "incorrect value for prn, expected 0, is %d", msg->prn);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

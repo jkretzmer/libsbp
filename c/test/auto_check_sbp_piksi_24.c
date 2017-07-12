@@ -147,6 +147,9 @@ START_TEST( test_auto_check_sbp_piksi_24 )
     fail_unless(msg->uart_ftdi.rx_buffer_level == 1, "incorrect value for uart_ftdi.rx_buffer_level, expected 1, is %d", msg->uart_ftdi.rx_buffer_level);
     fail_unless((msg->uart_ftdi.tx_throughput*100 - 5.06338024139*100) < 0.05, "incorrect value for uart_ftdi.tx_throughput, expected 5.06338024139, is %f", msg->uart_ftdi.tx_throughput);
     fail_unless(msg->uart_ftdi.tx_buffer_level == 81, "incorrect value for uart_ftdi.tx_buffer_level, expected 81, is %d", msg->uart_ftdi.tx_buffer_level);
+    // print to string
+    char test_str[1024];
+    msg_uart_state_depa_t_to_json_str( ( msg_uart_state_depa_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -209,6 +212,9 @@ START_TEST( test_auto_check_sbp_piksi_24 )
     fail_unless(msg->uart_ftdi.rx_buffer_level == 1, "incorrect value for uart_ftdi.rx_buffer_level, expected 1, is %d", msg->uart_ftdi.rx_buffer_level);
     fail_unless((msg->uart_ftdi.tx_throughput*100 - 6.79014110565*100) < 0.05, "incorrect value for uart_ftdi.tx_throughput, expected 6.79014110565, is %f", msg->uart_ftdi.tx_throughput);
     fail_unless(msg->uart_ftdi.tx_buffer_level == 85, "incorrect value for uart_ftdi.tx_buffer_level, expected 85, is %d", msg->uart_ftdi.tx_buffer_level);
+    // print to string
+    char test_str[1024];
+    msg_uart_state_depa_t_to_json_str( ( msg_uart_state_depa_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

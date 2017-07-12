@@ -130,6 +130,9 @@ START_TEST( test_auto_check_sbp_ext_events_32 )
     fail_unless(msg->flags == 3, "incorrect value for flags, expected 3, is %d", msg->flags);
     fail_unless(msg->tow == 254924999, "incorrect value for tow, expected 254924999, is %d", msg->tow);
     fail_unless(msg->pin == 0, "incorrect value for pin, expected 0, is %d", msg->pin);
+    // print to string
+    char test_str[1024];
+    msg_ext_event_t_to_json_str( ( msg_ext_event_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

@@ -131,6 +131,9 @@ START_TEST( test_auto_check_sbp_acquisition_1 )
     fail_unless(msg->sid.code == 0, "incorrect value for sid.code, expected 0, is %d", msg->sid.code);
     fail_unless(msg->sid.reserved == 0, "incorrect value for sid.reserved, expected 0, is %d", msg->sid.reserved);
     fail_unless(msg->sid.sat == 10, "incorrect value for sid.sat, expected 10, is %d", msg->sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_t_to_json_str( ( msg_acq_result_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -177,6 +180,9 @@ START_TEST( test_auto_check_sbp_acquisition_1 )
     fail_unless(msg->sid.code == 0, "incorrect value for sid.code, expected 0, is %d", msg->sid.code);
     fail_unless(msg->sid.reserved == 0, "incorrect value for sid.reserved, expected 0, is %d", msg->sid.reserved);
     fail_unless(msg->sid.sat == 6, "incorrect value for sid.sat, expected 6, is %d", msg->sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_t_to_json_str( ( msg_acq_result_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -223,6 +229,9 @@ START_TEST( test_auto_check_sbp_acquisition_1 )
     fail_unless(msg->sid.code == 0, "incorrect value for sid.code, expected 0, is %d", msg->sid.code);
     fail_unless(msg->sid.reserved == 0, "incorrect value for sid.reserved, expected 0, is %d", msg->sid.reserved);
     fail_unless(msg->sid.sat == 13, "incorrect value for sid.sat, expected 13, is %d", msg->sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_t_to_json_str( ( msg_acq_result_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -269,6 +278,9 @@ START_TEST( test_auto_check_sbp_acquisition_1 )
     fail_unless(msg->sid.code == 0, "incorrect value for sid.code, expected 0, is %d", msg->sid.code);
     fail_unless(msg->sid.reserved == 0, "incorrect value for sid.reserved, expected 0, is %d", msg->sid.reserved);
     fail_unless(msg->sid.sat == 1, "incorrect value for sid.sat, expected 1, is %d", msg->sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_t_to_json_str( ( msg_acq_result_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -315,6 +327,9 @@ START_TEST( test_auto_check_sbp_acquisition_1 )
     fail_unless(msg->sid.code == 0, "incorrect value for sid.code, expected 0, is %d", msg->sid.code);
     fail_unless(msg->sid.reserved == 0, "incorrect value for sid.reserved, expected 0, is %d", msg->sid.reserved);
     fail_unless(msg->sid.sat == 27, "incorrect value for sid.sat, expected 27, is %d", msg->sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_acq_result_t_to_json_str( ( msg_acq_result_t* ) msg, test_str, 1024);
   }
 }
 END_TEST

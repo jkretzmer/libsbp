@@ -180,6 +180,9 @@ START_TEST( test_auto_check_sbp_tracking_40 )
     fail_unless(msg->states[10].sid.code == 0, "incorrect value for states[10].sid.code, expected 0, is %d", msg->states[10].sid.code);
     fail_unless(msg->states[10].sid.reserved == 0, "incorrect value for states[10].sid.reserved, expected 0, is %d", msg->states[10].sid.reserved);
     fail_unless(msg->states[10].sid.sat == 0, "incorrect value for states[10].sid.sat, expected 0, is %d", msg->states[10].sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_tracking_state_dep_b_t_to_json_str( ( msg_tracking_state_dep_b_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -275,6 +278,9 @@ START_TEST( test_auto_check_sbp_tracking_40 )
     fail_unless(msg->states[10].sid.code == 0, "incorrect value for states[10].sid.code, expected 0, is %d", msg->states[10].sid.code);
     fail_unless(msg->states[10].sid.reserved == 0, "incorrect value for states[10].sid.reserved, expected 0, is %d", msg->states[10].sid.reserved);
     fail_unless(msg->states[10].sid.sat == 0, "incorrect value for states[10].sid.sat, expected 0, is %d", msg->states[10].sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_tracking_state_dep_b_t_to_json_str( ( msg_tracking_state_dep_b_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -370,6 +376,9 @@ START_TEST( test_auto_check_sbp_tracking_40 )
     fail_unless(msg->states[10].sid.code == 0, "incorrect value for states[10].sid.code, expected 0, is %d", msg->states[10].sid.code);
     fail_unless(msg->states[10].sid.reserved == 0, "incorrect value for states[10].sid.reserved, expected 0, is %d", msg->states[10].sid.reserved);
     fail_unless(msg->states[10].sid.sat == 0, "incorrect value for states[10].sid.sat, expected 0, is %d", msg->states[10].sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_tracking_state_dep_b_t_to_json_str( ( msg_tracking_state_dep_b_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -465,6 +474,9 @@ START_TEST( test_auto_check_sbp_tracking_40 )
     fail_unless(msg->states[10].sid.code == 0, "incorrect value for states[10].sid.code, expected 0, is %d", msg->states[10].sid.code);
     fail_unless(msg->states[10].sid.reserved == 0, "incorrect value for states[10].sid.reserved, expected 0, is %d", msg->states[10].sid.reserved);
     fail_unless(msg->states[10].sid.sat == 0, "incorrect value for states[10].sid.sat, expected 0, is %d", msg->states[10].sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_tracking_state_dep_b_t_to_json_str( ( msg_tracking_state_dep_b_t* ) msg, test_str, 1024);
   }
   // Test successful parsing of a message
   {
@@ -560,6 +572,9 @@ START_TEST( test_auto_check_sbp_tracking_40 )
     fail_unless(msg->states[10].sid.code == 0, "incorrect value for states[10].sid.code, expected 0, is %d", msg->states[10].sid.code);
     fail_unless(msg->states[10].sid.reserved == 0, "incorrect value for states[10].sid.reserved, expected 0, is %d", msg->states[10].sid.reserved);
     fail_unless(msg->states[10].sid.sat == 0, "incorrect value for states[10].sid.sat, expected 0, is %d", msg->states[10].sid.sat);
+    // print to string
+    char test_str[1024];
+    msg_tracking_state_dep_b_t_to_json_str( ( msg_tracking_state_dep_b_t* ) msg, test_str, 1024);
   }
 }
 END_TEST
