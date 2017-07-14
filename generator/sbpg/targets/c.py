@@ -14,7 +14,9 @@ Generator for c target.
 """
 
 from sbpg.targets.templating import *
+import os
 
+SBP2JSON_TEMPLATE = "sbp2json_template.c"
 MESSAGES_TEMPLATE_NAME = "sbp_messages_template.h"
 VERSION_TEMPLATE_NAME = "sbp_version_template.h"
 
@@ -38,10 +40,10 @@ def extensions(includes):
 import re
 
 CONSTRUCT_CODE = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32',
-                      's64', 'float', 'double']
+                      's64', 'float', 'double', 'string', 'char']
 
-FORMAT_STR = ['%hhu', '%hu', '%u', '%lu', '%hhd', '%hd', '%d',
-                      '%ld', '%f', '%f']
+FORMAT_STR = ['%hhu', '%hu', '%u', '%llu', '%hhd', '%hd', '%d',
+                      '%ld', '%f', '%f', r'\"%s\"', r'\"%s\"']
 FORMAT_DICT = {x:y for x,y in zip(CONSTRUCT_CODE,FORMAT_STR)}
 COLLISIONS = set(['GnssSignal', 'GPSTime'])
 
@@ -73,10 +75,31 @@ def mk_id(field):
 
 def entirely_simple(struct):
   is_simple = [f.type_id in CONSTRUCT_CODE for f in struct.fields]
-  if all(is_simple):
-    return True 
+  if all(is_simple) or len(is_simple) == 0:
+    return True
   else:
-    return False 
+    return False
+
+def is_simple(f):
+  if f in CONSTRUCT_CODE:
+    return True
+  else:
+    return False
+
+def mk_str_format_msg(struct):
+  """Builds a sprintf string from a msg or class.
+  """
+  out_str = "\"{"
+  json = []
+  json.append(r"\"msg_type\": %u")
+  json.append(r"\"sender\": %u")
+  json.append(r"\"length\": %u")
+  if entirely_simple(struct):
+    for field in struct.fields:
+      json.append(str(r"\"" + field.identifier + r"\": " + FORMAT_DICT[mk_id(field)]))
+  out_str += ", ".join(json)
+  out_str += "}\""
+  return out_str
 
 def mk_str_format(struct):
   """Builds a sprintf string from a msg or class.
@@ -85,15 +108,30 @@ def mk_str_format(struct):
   json = []
   if entirely_simple(struct):
     for field in struct.fields:
-      json.append(str(field.identifier + ": " + FORMAT_DICT[mk_id(field)]))
+      json.append(str(r"\"" + field.identifier + r"\": " + FORMAT_DICT[mk_id(field)]))
   out_str += ", ".join(json)
   out_str += "}\""
   return out_str
 
+def get_format_str(f):
+  return FORMAT_DICT[mk_id(f)]
+
+def mk_arg_list_msg(struct):
+  """Builds the arg list for a sprintf like command.
+  """
+  args = []
+  args.append("msg_len")
+  args.append("sender_id")
+  args.append("msg_type")
+  if entirely_simple(struct):
+    for field in struct.fields:
+      args.append(str("in->" + field.identifier))
+  return ", ".join(args)
+
 def mk_arg_list(struct):
   """Builds the arg list for a sprintf like command.
   """
-  args = [] 
+  args = []
   if entirely_simple(struct):
     for field in struct.fields:
       args.append(str("in->" + field.identifier))
@@ -120,7 +158,11 @@ JENV.filters['mk_size'] = mk_size
 JENV.filters['convert'] = convert
 JENV.filters['mk_str_format'] = mk_str_format 
 JENV.filters['mk_arg_list'] = mk_arg_list
+JENV.filters['mk_str_format_msg'] = mk_str_format_msg
+JENV.filters['mk_arg_list_msg'] = mk_arg_list_msg
 JENV.filters['entirely_simple'] = mk_arg_list
+JENV.filters['is_simple'] = is_simple
+JENV.filters['get_format_str'] = get_format_str
 
 def render_source(output_dir, package_spec):
   """
@@ -137,6 +179,18 @@ def render_source(output_dir, package_spec):
                                description=package_spec.description,
                                timestamp=package_spec.creation_timestamp,
                                include=extensions(package_spec.includes)))
+
+def render_c2json(output_dir, all_package_specs):
+  """
+  Render and output to a directory given a package specification.
+  """
+  destination_filename = os.path.abspath("%s/../../src/sbp2json.c" % (output_dir))
+  source_specs = [spec for spec in all_package_specs if spec.render_source]
+  py_template = JENV.get_template(SBP2JSON_TEMPLATE)
+  with open(destination_filename, 'w') as f:
+    headers = [spec.filepath[1] + ".h" for spec in source_specs]
+    f.write(py_template.render(includes=headers,
+                               package_specs=source_specs))
 
 def render_version(output_dir, release):
   destination_filename = "%s/version.h" % output_dir
