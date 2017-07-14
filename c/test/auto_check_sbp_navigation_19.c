@@ -135,7 +135,8 @@ START_TEST( test_auto_check_sbp_navigation_19 )
     fail_unless(msg->e == 3996, "incorrect value for e, expected 3996, is %d", msg->e);
     // print to string
     char test_str[1024];
-    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
+    msg_vel_ned_dep_a_t_to_json_str( last_sender_id, 0x205, last_len, ( msg_vel_ned_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -186,7 +187,8 @@ START_TEST( test_auto_check_sbp_navigation_19 )
     fail_unless(msg->e == 3791, "incorrect value for e, expected 3791, is %d", msg->e);
     // print to string
     char test_str[1024];
-    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
+    msg_vel_ned_dep_a_t_to_json_str( last_sender_id, 0x205, last_len, ( msg_vel_ned_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -237,7 +239,8 @@ START_TEST( test_auto_check_sbp_navigation_19 )
     fail_unless(msg->e == 3724, "incorrect value for e, expected 3724, is %d", msg->e);
     // print to string
     char test_str[1024];
-    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
+    msg_vel_ned_dep_a_t_to_json_str( last_sender_id, 0x205, last_len, ( msg_vel_ned_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -288,7 +291,8 @@ START_TEST( test_auto_check_sbp_navigation_19 )
     fail_unless(msg->e == 3848, "incorrect value for e, expected 3848, is %d", msg->e);
     // print to string
     char test_str[1024];
-    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
+    msg_vel_ned_dep_a_t_to_json_str( last_sender_id, 0x205, last_len, ( msg_vel_ned_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -339,7 +343,8 @@ START_TEST( test_auto_check_sbp_navigation_19 )
     fail_unless(msg->e == 3724, "incorrect value for e, expected 3724, is %d", msg->e);
     // print to string
     char test_str[1024];
-    msg_vel_ned_dep_a_t_to_json_str( ( msg_vel_ned_dep_a_t* ) msg, test_str, 1024);
+    msg_vel_ned_dep_a_t_to_json_str( last_sender_id, 0x205, last_len, ( msg_vel_ned_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

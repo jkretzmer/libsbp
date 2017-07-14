@@ -130,7 +130,8 @@ START_TEST( test_auto_check_sbp_logging_34 )
     fail_unless(msg->protocol == 0, "incorrect value for protocol, expected 0, is %d", msg->protocol);
     // print to string
     char test_str[1024];
-    msg_fwd_t_to_json_str( ( msg_fwd_t* ) msg, test_str, 1024);
+    msg_fwd_t_to_json_str( last_sender_id, 0x402, last_len, ( msg_fwd_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

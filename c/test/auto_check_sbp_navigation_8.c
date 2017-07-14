@@ -134,7 +134,8 @@ START_TEST( test_auto_check_sbp_navigation_8 )
     fail_unless(msg->pdop == 6, "incorrect value for pdop, expected 6, is %d", msg->pdop);
     // print to string
     char test_str[1024];
-    msg_dops_t_to_json_str( ( msg_dops_t* ) msg, test_str, 1024);
+    msg_dops_t_to_json_str( last_sender_id, 0x208, last_len, ( msg_dops_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

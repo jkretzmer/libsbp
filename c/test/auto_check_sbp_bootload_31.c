@@ -129,7 +129,8 @@ START_TEST( test_auto_check_sbp_bootload_31 )
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
     // print to string
     char test_str[1024];
-    msg_bootloader_handshake_resp_t_to_json_str( ( msg_bootloader_handshake_resp_t* ) msg, test_str, 1024);
+    msg_bootloader_handshake_resp_t_to_json_str( last_sender_id, 0xb4, last_len, ( msg_bootloader_handshake_resp_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -176,7 +177,8 @@ START_TEST( test_auto_check_sbp_bootload_31 )
     fail_unless(msg->handshake[3] == 50, "incorrect value for handshake[3], expected 50, is %d", msg->handshake[3]);
     // print to string
     char test_str[1024];
-    msg_bootloader_handshake_dep_a_t_to_json_str( ( msg_bootloader_handshake_dep_a_t* ) msg, test_str, 1024);
+    msg_bootloader_handshake_dep_a_t_to_json_str( last_sender_id, 0xb0, last_len, ( msg_bootloader_handshake_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

@@ -160,7 +160,8 @@ START_TEST( test_auto_check_sbp_tracking_39 )
     fail_unless((msg->states[10].cn0*100 - 6.97599983215*100) < 0.05, "incorrect value for states[10].cn0, expected 6.97599983215, is %f", msg->states[10].cn0);
     // print to string
     char test_str[1024];
-    msg_tracking_state_dep_a_t_to_json_str( ( msg_tracking_state_dep_a_t* ) msg, test_str, 1024);
+    msg_tracking_state_dep_a_t_to_json_str( last_sender_id, 0x16, last_len, ( msg_tracking_state_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -236,7 +237,8 @@ START_TEST( test_auto_check_sbp_tracking_39 )
     fail_unless((msg->states[10].cn0*100 - 4.06148862839*100) < 0.05, "incorrect value for states[10].cn0, expected 4.06148862839, is %f", msg->states[10].cn0);
     // print to string
     char test_str[1024];
-    msg_tracking_state_dep_a_t_to_json_str( ( msg_tracking_state_dep_a_t* ) msg, test_str, 1024);
+    msg_tracking_state_dep_a_t_to_json_str( last_sender_id, 0x16, last_len, ( msg_tracking_state_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -312,7 +314,8 @@ START_TEST( test_auto_check_sbp_tracking_39 )
     fail_unless((msg->states[10].cn0*100 - 2.85682320595*100) < 0.05, "incorrect value for states[10].cn0, expected 2.85682320595, is %f", msg->states[10].cn0);
     // print to string
     char test_str[1024];
-    msg_tracking_state_dep_a_t_to_json_str( ( msg_tracking_state_dep_a_t* ) msg, test_str, 1024);
+    msg_tracking_state_dep_a_t_to_json_str( last_sender_id, 0x16, last_len, ( msg_tracking_state_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -388,7 +391,8 @@ START_TEST( test_auto_check_sbp_tracking_39 )
     fail_unless((msg->states[10].cn0*100 - -1.0*100) < 0.05, "incorrect value for states[10].cn0, expected -1.0, is %f", msg->states[10].cn0);
     // print to string
     char test_str[1024];
-    msg_tracking_state_dep_a_t_to_json_str( ( msg_tracking_state_dep_a_t* ) msg, test_str, 1024);
+    msg_tracking_state_dep_a_t_to_json_str( last_sender_id, 0x16, last_len, ( msg_tracking_state_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -464,7 +468,8 @@ START_TEST( test_auto_check_sbp_tracking_39 )
     fail_unless((msg->states[10].cn0*100 - -1.0*100) < 0.05, "incorrect value for states[10].cn0, expected -1.0, is %f", msg->states[10].cn0);
     // print to string
     char test_str[1024];
-    msg_tracking_state_dep_a_t_to_json_str( ( msg_tracking_state_dep_a_t* ) msg, test_str, 1024);
+    msg_tracking_state_dep_a_t_to_json_str( last_sender_id, 0x16, last_len, ( msg_tracking_state_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -540,7 +545,8 @@ START_TEST( test_auto_check_sbp_tracking_39 )
     fail_unless((msg->states[10].cn0*100 - -1.0*100) < 0.05, "incorrect value for states[10].cn0, expected -1.0, is %f", msg->states[10].cn0);
     // print to string
     char test_str[1024];
-    msg_tracking_state_dep_a_t_to_json_str( ( msg_tracking_state_dep_a_t* ) msg, test_str, 1024);
+    msg_tracking_state_dep_a_t_to_json_str( last_sender_id, 0x16, last_len, ( msg_tracking_state_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

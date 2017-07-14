@@ -133,7 +133,8 @@ START_TEST( test_auto_check_sbp_navigation_9 )
     fail_unless(msg->pdop == 190, "incorrect value for pdop, expected 190, is %d", msg->pdop);
     // print to string
     char test_str[1024];
-    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
+    msg_dops_dep_a_t_to_json_str( last_sender_id, 0x206, last_len, ( msg_dops_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -182,7 +183,8 @@ START_TEST( test_auto_check_sbp_navigation_9 )
     fail_unless(msg->pdop == 190, "incorrect value for pdop, expected 190, is %d", msg->pdop);
     // print to string
     char test_str[1024];
-    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
+    msg_dops_dep_a_t_to_json_str( last_sender_id, 0x206, last_len, ( msg_dops_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -231,7 +233,8 @@ START_TEST( test_auto_check_sbp_navigation_9 )
     fail_unless(msg->pdop == 190, "incorrect value for pdop, expected 190, is %d", msg->pdop);
     // print to string
     char test_str[1024];
-    msg_dops_dep_a_t_to_json_str( ( msg_dops_dep_a_t* ) msg, test_str, 1024);
+    msg_dops_dep_a_t_to_json_str( last_sender_id, 0x206, last_len, ( msg_dops_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

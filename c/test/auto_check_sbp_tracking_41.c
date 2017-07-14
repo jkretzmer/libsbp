@@ -152,7 +152,8 @@ START_TEST( test_auto_check_sbp_tracking_41 )
     fail_unless(msg->P == 0, "incorrect value for P, expected 0, is %d", msg->P);
     // print to string
     char test_str[1024];
-    msg_tracking_state_detailed_t_to_json_str( ( msg_tracking_state_detailed_t* ) msg, test_str, 1024);
+    msg_tracking_state_detailed_t_to_json_str( last_sender_id, 0x11, last_len, ( msg_tracking_state_detailed_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -220,7 +221,8 @@ START_TEST( test_auto_check_sbp_tracking_41 )
     fail_unless(msg->P == 0, "incorrect value for P, expected 0, is %d", msg->P);
     // print to string
     char test_str[1024];
-    msg_tracking_state_detailed_t_to_json_str( ( msg_tracking_state_detailed_t* ) msg, test_str, 1024);
+    msg_tracking_state_detailed_t_to_json_str( last_sender_id, 0x11, last_len, ( msg_tracking_state_detailed_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -288,7 +290,8 @@ START_TEST( test_auto_check_sbp_tracking_41 )
     fail_unless(msg->P == 0, "incorrect value for P, expected 0, is %d", msg->P);
     // print to string
     char test_str[1024];
-    msg_tracking_state_detailed_t_to_json_str( ( msg_tracking_state_detailed_t* ) msg, test_str, 1024);
+    msg_tracking_state_detailed_t_to_json_str( last_sender_id, 0x11, last_len, ( msg_tracking_state_detailed_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -356,7 +359,8 @@ START_TEST( test_auto_check_sbp_tracking_41 )
     fail_unless(msg->P == 0, "incorrect value for P, expected 0, is %d", msg->P);
     // print to string
     char test_str[1024];
-    msg_tracking_state_detailed_t_to_json_str( ( msg_tracking_state_detailed_t* ) msg, test_str, 1024);
+    msg_tracking_state_detailed_t_to_json_str( last_sender_id, 0x11, last_len, ( msg_tracking_state_detailed_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -424,7 +428,8 @@ START_TEST( test_auto_check_sbp_tracking_41 )
     fail_unless(msg->P == 0, "incorrect value for P, expected 0, is %d", msg->P);
     // print to string
     char test_str[1024];
-    msg_tracking_state_detailed_t_to_json_str( ( msg_tracking_state_detailed_t* ) msg, test_str, 1024);
+    msg_tracking_state_detailed_t_to_json_str( last_sender_id, 0x11, last_len, ( msg_tracking_state_detailed_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

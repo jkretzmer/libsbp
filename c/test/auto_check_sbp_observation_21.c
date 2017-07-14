@@ -178,7 +178,8 @@ START_TEST( test_auto_check_sbp_observation_21 )
     fail_unless(msg->obs[5].P == 2347034654, "incorrect value for obs[5].P, expected 2347034654, is %d", msg->obs[5].P);
     // print to string
     char test_str[1024];
-    msg_obs_dep_b_t_to_json_str( ( msg_obs_dep_b_t* ) msg, test_str, 1024);
+    msg_obs_dep_b_t_to_json_str( last_sender_id, 0x43, last_len, ( msg_obs_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -248,7 +249,8 @@ START_TEST( test_auto_check_sbp_observation_21 )
     fail_unless(msg->obs[2].P == 2052171351, "incorrect value for obs[2].P, expected 2052171351, is %d", msg->obs[2].P);
     // print to string
     char test_str[1024];
-    msg_obs_dep_b_t_to_json_str( ( msg_obs_dep_b_t* ) msg, test_str, 1024);
+    msg_obs_dep_b_t_to_json_str( last_sender_id, 0x43, last_len, ( msg_obs_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -342,7 +344,8 @@ START_TEST( test_auto_check_sbp_observation_21 )
     fail_unless(msg->obs[5].P == 2347022641, "incorrect value for obs[5].P, expected 2347022641, is %d", msg->obs[5].P);
     // print to string
     char test_str[1024];
-    msg_obs_dep_b_t_to_json_str( ( msg_obs_dep_b_t* ) msg, test_str, 1024);
+    msg_obs_dep_b_t_to_json_str( last_sender_id, 0x43, last_len, ( msg_obs_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -412,7 +415,8 @@ START_TEST( test_auto_check_sbp_observation_21 )
     fail_unless(msg->obs[2].P == 2052167183, "incorrect value for obs[2].P, expected 2052167183, is %d", msg->obs[2].P);
     // print to string
     char test_str[1024];
-    msg_obs_dep_b_t_to_json_str( ( msg_obs_dep_b_t* ) msg, test_str, 1024);
+    msg_obs_dep_b_t_to_json_str( last_sender_id, 0x43, last_len, ( msg_obs_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -506,7 +510,8 @@ START_TEST( test_auto_check_sbp_observation_21 )
     fail_unless(msg->obs[5].P == 2347011798, "incorrect value for obs[5].P, expected 2347011798, is %d", msg->obs[5].P);
     // print to string
     char test_str[1024];
-    msg_obs_dep_b_t_to_json_str( ( msg_obs_dep_b_t* ) msg, test_str, 1024);
+    msg_obs_dep_b_t_to_json_str( last_sender_id, 0x43, last_len, ( msg_obs_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

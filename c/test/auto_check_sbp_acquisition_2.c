@@ -133,7 +133,8 @@ START_TEST( test_auto_check_sbp_acquisition_2 )
     fail_unless(msg->sid.sat == 9, "incorrect value for sid.sat, expected 9, is %d", msg->sid.sat);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_b_t_to_json_str( ( msg_acq_result_dep_b_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_b_t_to_json_str( last_sender_id, 0x14, last_len, ( msg_acq_result_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -182,7 +183,8 @@ START_TEST( test_auto_check_sbp_acquisition_2 )
     fail_unless(msg->sid.sat == 3, "incorrect value for sid.sat, expected 3, is %d", msg->sid.sat);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_b_t_to_json_str( ( msg_acq_result_dep_b_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_b_t_to_json_str( last_sender_id, 0x14, last_len, ( msg_acq_result_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -231,7 +233,8 @@ START_TEST( test_auto_check_sbp_acquisition_2 )
     fail_unless(msg->sid.sat == 18, "incorrect value for sid.sat, expected 18, is %d", msg->sid.sat);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_b_t_to_json_str( ( msg_acq_result_dep_b_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_b_t_to_json_str( last_sender_id, 0x14, last_len, ( msg_acq_result_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -280,7 +283,8 @@ START_TEST( test_auto_check_sbp_acquisition_2 )
     fail_unless(msg->sid.sat == 17, "incorrect value for sid.sat, expected 17, is %d", msg->sid.sat);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_b_t_to_json_str( ( msg_acq_result_dep_b_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_b_t_to_json_str( last_sender_id, 0x14, last_len, ( msg_acq_result_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -329,7 +333,8 @@ START_TEST( test_auto_check_sbp_acquisition_2 )
     fail_unless(msg->sid.sat == 5, "incorrect value for sid.sat, expected 5, is %d", msg->sid.sat);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_b_t_to_json_str( ( msg_acq_result_dep_b_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_b_t_to_json_str( last_sender_id, 0x14, last_len, ( msg_acq_result_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

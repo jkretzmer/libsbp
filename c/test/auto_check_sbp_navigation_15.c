@@ -135,7 +135,8 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless((msg->lat*100 - 37.4290689091*100) < 0.05, "incorrect value for lat, expected 37.4290689091, is %f", msg->lat);
     // print to string
     char test_str[1024];
-    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_llh_dep_a_t_to_json_str( last_sender_id, 0x201, last_len, ( msg_pos_llh_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -186,7 +187,8 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless((msg->lat*100 - 37.4290643089*100) < 0.05, "incorrect value for lat, expected 37.4290643089, is %f", msg->lat);
     // print to string
     char test_str[1024];
-    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_llh_dep_a_t_to_json_str( last_sender_id, 0x201, last_len, ( msg_pos_llh_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -237,7 +239,8 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless((msg->lat*100 - 37.4290544776*100) < 0.05, "incorrect value for lat, expected 37.4290544776, is %f", msg->lat);
     // print to string
     char test_str[1024];
-    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_llh_dep_a_t_to_json_str( last_sender_id, 0x201, last_len, ( msg_pos_llh_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -288,7 +291,8 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless((msg->lat*100 - 37.4290633739*100) < 0.05, "incorrect value for lat, expected 37.4290633739, is %f", msg->lat);
     // print to string
     char test_str[1024];
-    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_llh_dep_a_t_to_json_str( last_sender_id, 0x201, last_len, ( msg_pos_llh_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -339,7 +343,8 @@ START_TEST( test_auto_check_sbp_navigation_15 )
     fail_unless((msg->lat*100 - 37.4290765936*100) < 0.05, "incorrect value for lat, expected 37.4290765936, is %f", msg->lat);
     // print to string
     char test_str[1024];
-    msg_pos_llh_dep_a_t_to_json_str( ( msg_pos_llh_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_llh_dep_a_t_to_json_str( last_sender_id, 0x201, last_len, ( msg_pos_llh_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

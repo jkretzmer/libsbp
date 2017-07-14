@@ -43,10 +43,9 @@ typedef struct __attribute__((packed)) {
   sbp_gnss_signal_t sid;    /**< GNSS signal for which acquisition was attempted */
 } msg_acq_result_t;
 
-static inline int msg_acq_result_t_to_json_str( msg_acq_result_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_001F_TO_JSON msg_acq_result_t_to_json_str
+int msg_acq_result_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_acq_result_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
  *
@@ -62,10 +61,9 @@ be in units of dB Hz in a later revision of this message.
   sbp_gnss_signal_t sid;    /**< GNSS signal for which acquisition was attempted */
 } msg_acq_result_dep_b_t;
 
-static inline int msg_acq_result_dep_b_t_to_json_str( msg_acq_result_dep_b_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_0014_TO_JSON msg_acq_result_dep_b_t_to_json_str
+int msg_acq_result_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_acq_result_dep_b_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
  *
@@ -83,11 +81,9 @@ acquisition was attempted
  */
 } msg_acq_result_dep_a_t;
 
+
 #define MSG_0015_TO_JSON msg_acq_result_dep_a_t_to_json_str
-static inline int msg_acq_result_dep_a_t_to_json_str( msg_acq_result_dep_a_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{snr: %f, cp: %f, cf: %f, prn: %hhu}", in->snr, in->cp, in->cf, in->prn);
- }
+int msg_acq_result_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_acq_result_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** Acq perfomance measurement and debug
  *
@@ -110,10 +106,8 @@ typedef struct __attribute__((packed)) {
   u32 cp;            /**< Codephase of detected peak. Only valid if status is '1' [chips*10] */
 } acq_sv_profile_t;
 
-static inline int acq_sv_profile_t_to_json_str( acq_sv_profile_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+int acq_sv_profile_t_to_json_str( acq_sv_profile_t * in, uint64_t max_len, char* out_str);
 
 /** Acquisition perfomance measurement and debug
  *
@@ -125,10 +119,9 @@ typedef struct __attribute__((packed)) {
   acq_sv_profile_t acq_sv_profile[0]; /**< SV profiles during acquisition time */
 } msg_acq_sv_profile_t;
 
-static inline int msg_acq_sv_profile_t_to_json_str( msg_acq_sv_profile_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_001E_TO_JSON msg_acq_sv_profile_t_to_json_str
+int msg_acq_sv_profile_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_acq_sv_profile_t * in, uint64_t max_len, char* out_str);
 
 /** \} */
 

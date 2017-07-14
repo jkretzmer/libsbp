@@ -132,7 +132,8 @@ START_TEST( test_auto_check_sbp_ext_events_32 )
     fail_unless(msg->pin == 0, "incorrect value for pin, expected 0, is %d", msg->pin);
     // print to string
     char test_str[1024];
-    msg_ext_event_t_to_json_str( ( msg_ext_event_t* ) msg, test_str, 1024);
+    msg_ext_event_t_to_json_str( last_sender_id, 0x101, last_len, ( msg_ext_event_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

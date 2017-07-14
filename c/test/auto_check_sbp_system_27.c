@@ -131,7 +131,8 @@ START_TEST( test_auto_check_sbp_system_27 )
     fail_unless(msg->num_signals == 12, "incorrect value for num_signals, expected 12, is %d", msg->num_signals);
     // print to string
     char test_str[1024];
-    msg_dgnss_status_t_to_json_str( ( msg_dgnss_status_t* ) msg, test_str, 1024);
+    msg_dgnss_status_t_to_json_str( last_sender_id, 0xff02, last_len, ( msg_dgnss_status_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

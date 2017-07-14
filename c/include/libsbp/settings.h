@@ -39,6 +39,10 @@
  */
 #define SBP_MSG_SETTINGS_SAVE               0x00A1
 
+
+#define MSG_00A1_TO_JSON msg_settings_save_t_to_json_str
+int msg_settings_save_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, void * in, uint64_t max_len, char* out_str);
+
 /** Write device configuration settings (host => device)
  *
 * The setting message writes the device configuration.
@@ -52,10 +56,9 @@ process to this message when it is received from sender ID
  */
 } msg_settings_write_t;
 
-static inline int msg_settings_write_t_to_json_str( msg_settings_write_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00A0_TO_JSON msg_settings_write_t_to_json_str
+int msg_settings_write_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_settings_write_t * in, uint64_t max_len, char* out_str);
 
 /** Read device configuration settings (host => device)
  *
@@ -69,10 +72,9 @@ this message when it is received from sender ID 0x42.
  */
 } msg_settings_read_req_t;
 
-static inline int msg_settings_read_req_t_to_json_str( msg_settings_read_req_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00A4_TO_JSON msg_settings_read_req_t_to_json_str
+int msg_settings_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_settings_read_req_t * in, uint64_t max_len, char* out_str);
 
 /** Read device configuration settings (host <= device)
  *
@@ -85,10 +87,9 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_read_resp_t;
 
-static inline int msg_settings_read_resp_t_to_json_str( msg_settings_read_resp_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00A5_TO_JSON msg_settings_read_resp_t_to_json_str
+int msg_settings_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_settings_read_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Read setting by direct index (host => device)
  *
@@ -105,11 +106,9 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_read_by_index_req_t;
 
+
 #define MSG_00A2_TO_JSON msg_settings_read_by_index_req_t_to_json_str
-static inline int msg_settings_read_by_index_req_t_to_json_str( msg_settings_read_by_index_req_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{index: %hu}", in->index);
- }
+int msg_settings_read_by_index_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_settings_read_by_index_req_t * in, uint64_t max_len, char* out_str);
 
 /** Read setting by direct index (host <= device)
  *
@@ -128,16 +127,19 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_read_by_index_resp_t;
 
-static inline int msg_settings_read_by_index_resp_t_to_json_str( msg_settings_read_by_index_resp_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00A7_TO_JSON msg_settings_read_by_index_resp_t_to_json_str
+int msg_settings_read_by_index_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_settings_read_by_index_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Finished reading settings (host <= device)
  *
  * The settings message for indicating end of the settings values.
  */
 #define SBP_MSG_SETTINGS_READ_BY_INDEX_DONE 0x00A6
+
+
+#define MSG_00A6_TO_JSON msg_settings_read_by_index_done_t_to_json_str
+int msg_settings_read_by_index_done_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, void * in, uint64_t max_len, char* out_str);
 
 /** Register setting and default value (device => host)
  *
@@ -152,10 +154,9 @@ typedef struct __attribute__((packed)) {
  */
 } msg_settings_register_t;
 
-static inline int msg_settings_register_t_to_json_str( msg_settings_register_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00AE_TO_JSON msg_settings_register_t_to_json_str
+int msg_settings_register_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_settings_register_t * in, uint64_t max_len, char* out_str);
 
 /** \} */
 

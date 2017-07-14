@@ -52,10 +52,9 @@ typedef struct __attribute__((packed)) {
   char filename[0];   /**< Name of the file to read from */
 } msg_fileio_read_req_t;
 
-static inline int msg_fileio_read_req_t_to_json_str( msg_fileio_read_req_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00A8_TO_JSON msg_fileio_read_req_t_to_json_str
+int msg_fileio_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_req_t * in, uint64_t max_len, char* out_str);
 
 /** File read from the file system (host <= device)
  *
@@ -71,10 +70,9 @@ typedef struct __attribute__((packed)) {
   u8 contents[0]; /**< Contents of read file */
 } msg_fileio_read_resp_t;
 
-static inline int msg_fileio_read_resp_t_to_json_str( msg_fileio_read_resp_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00A3_TO_JSON msg_fileio_read_resp_t_to_json_str
+int msg_fileio_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_resp_t * in, uint64_t max_len, char* out_str);
 
 /** List files in a directory (host => device)
  *
@@ -97,10 +95,9 @@ typedef struct __attribute__((packed)) {
   char dirname[0];  /**< Name of the directory to list */
 } msg_fileio_read_dir_req_t;
 
-static inline int msg_fileio_read_dir_req_t_to_json_str( msg_fileio_read_dir_req_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00A9_TO_JSON msg_fileio_read_dir_req_t_to_json_str
+int msg_fileio_read_dir_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_dir_req_t * in, uint64_t max_len, char* out_str);
 
 /** Files listed in a directory (host <= device)
  *
@@ -117,10 +114,9 @@ typedef struct __attribute__((packed)) {
   u8 contents[0]; /**< Contents of read directory */
 } msg_fileio_read_dir_resp_t;
 
-static inline int msg_fileio_read_dir_resp_t_to_json_str( msg_fileio_read_dir_resp_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00AA_TO_JSON msg_fileio_read_dir_resp_t_to_json_str
+int msg_fileio_read_dir_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_dir_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Delete a file from the file system (host => device)
  *
@@ -134,10 +130,9 @@ typedef struct __attribute__((packed)) {
   char filename[0]; /**< Name of the file to delete */
 } msg_fileio_remove_t;
 
-static inline int msg_fileio_remove_t_to_json_str( msg_fileio_remove_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00AC_TO_JSON msg_fileio_remove_t_to_json_str
+int msg_fileio_remove_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_remove_t * in, uint64_t max_len, char* out_str);
 
 /** Write to file (host => device)
  *
@@ -158,10 +153,9 @@ typedef struct __attribute__((packed)) {
   u8 data[0];     /**< Variable-length array of data to write */
 } msg_fileio_write_req_t;
 
-static inline int msg_fileio_write_req_t_to_json_str( msg_fileio_write_req_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00AD_TO_JSON msg_fileio_write_req_t_to_json_str
+int msg_fileio_write_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_write_req_t * in, uint64_t max_len, char* out_str);
 
 /** File written to (host <= device)
  *
@@ -176,11 +170,9 @@ typedef struct __attribute__((packed)) {
   u32 sequence;    /**< Write sequence number */
 } msg_fileio_write_resp_t;
 
+
 #define MSG_00AB_TO_JSON msg_fileio_write_resp_t_to_json_str
-static inline int msg_fileio_write_resp_t_to_json_str( msg_fileio_write_resp_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{sequence: %u}", in->sequence);
- }
+int msg_fileio_write_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_write_resp_t * in, uint64_t max_len, char* out_str);
 
 /** \} */
 

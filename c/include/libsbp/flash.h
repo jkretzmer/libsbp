@@ -49,10 +49,9 @@ starting address
   u8 data[0];       /**< Data to program addresses with, with length N=addr_len */
 } msg_flash_program_t;
 
-static inline int msg_flash_program_t_to_json_str( msg_flash_program_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00E6_TO_JSON msg_flash_program_t_to_json_str
+int msg_flash_program_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_flash_program_t * in, uint64_t max_len, char* out_str);
 
 /** Flash response message (host <= device).
  *
@@ -66,11 +65,9 @@ typedef struct __attribute__((packed)) {
   u8 response;    /**< Response flags */
 } msg_flash_done_t;
 
+
 #define MSG_00E0_TO_JSON msg_flash_done_t_to_json_str
-static inline int msg_flash_done_t_to_json_str( msg_flash_done_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{response: %hhu}", in->response);
- }
+int msg_flash_done_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_flash_done_t * in, uint64_t max_len, char* out_str);
 
 /** Read STM or M25 flash address request (host => device).
  *
@@ -91,10 +88,9 @@ starting address
  [bytes] */
 } msg_flash_read_req_t;
 
-static inline int msg_flash_read_req_t_to_json_str( msg_flash_read_req_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00E7_TO_JSON msg_flash_read_req_t_to_json_str
+int msg_flash_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_flash_read_req_t * in, uint64_t max_len, char* out_str);
 
 /** Read STM or M25 flash address response (host <= device).
  *
@@ -115,10 +111,9 @@ starting address
  [bytes] */
 } msg_flash_read_resp_t;
 
-static inline int msg_flash_read_resp_t_to_json_str( msg_flash_read_resp_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00E1_TO_JSON msg_flash_read_resp_t_to_json_str
+int msg_flash_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_flash_read_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Erase sector of device flash memory (host => device).
  *
@@ -136,11 +131,9 @@ the M25)
  */
 } msg_flash_erase_t;
 
+
 #define MSG_00E2_TO_JSON msg_flash_erase_t_to_json_str
-static inline int msg_flash_erase_t_to_json_str( msg_flash_erase_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{target: %hhu, sector_num: %u}", in->target, in->sector_num);
- }
+int msg_flash_erase_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_flash_erase_t * in, uint64_t max_len, char* out_str);
 
 /** Lock sector of STM flash memory (host => device)
  *
@@ -152,11 +145,9 @@ typedef struct __attribute__((packed)) {
   u32 sector;    /**< Flash sector number to lock */
 } msg_stm_flash_lock_sector_t;
 
+
 #define MSG_00E3_TO_JSON msg_stm_flash_lock_sector_t_to_json_str
-static inline int msg_stm_flash_lock_sector_t_to_json_str( msg_stm_flash_lock_sector_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{sector: %u}", in->sector);
- }
+int msg_stm_flash_lock_sector_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_stm_flash_lock_sector_t * in, uint64_t max_len, char* out_str);
 
 /** Unlock sector of STM flash memory (host => device)
  *
@@ -168,11 +159,9 @@ typedef struct __attribute__((packed)) {
   u32 sector;    /**< Flash sector number to unlock */
 } msg_stm_flash_unlock_sector_t;
 
+
 #define MSG_00E4_TO_JSON msg_stm_flash_unlock_sector_t_to_json_str
-static inline int msg_stm_flash_unlock_sector_t_to_json_str( msg_stm_flash_unlock_sector_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{sector: %u}", in->sector);
- }
+int msg_stm_flash_unlock_sector_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_stm_flash_unlock_sector_t * in, uint64_t max_len, char* out_str);
 
 /** Read device's hardcoded unique ID request (host => device)
 
@@ -183,6 +172,10 @@ static inline int msg_stm_flash_unlock_sector_t_to_json_str( msg_stm_flash_unloc
  * ID in the payload.
  */
 #define SBP_MSG_STM_UNIQUE_ID_REQ       0x00E8
+
+
+#define MSG_00E8_TO_JSON msg_stm_unique_id_req_t_to_json_str
+int msg_stm_unique_id_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, void * in, uint64_t max_len, char* out_str);
 
 /** Read device's hardcoded unique ID response (host <= device)
 
@@ -197,10 +190,9 @@ typedef struct __attribute__((packed)) {
   u8 stm_id[12]; /**< Device unique ID */
 } msg_stm_unique_id_resp_t;
 
-static inline int msg_stm_unique_id_resp_t_to_json_str( msg_stm_unique_id_resp_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00E5_TO_JSON msg_stm_unique_id_resp_t_to_json_str
+int msg_stm_unique_id_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_stm_unique_id_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Write M25 flash status register (host => device)
  *
@@ -212,10 +204,9 @@ typedef struct __attribute__((packed)) {
   u8 status[1]; /**< Byte to write to the M25 flash status register */
 } msg_m25_flash_write_status_t;
 
-static inline int msg_m25_flash_write_status_t_to_json_str( msg_m25_flash_write_status_t * in, char* out_str, int max_len) {
-  (void) max_len; (void) in; (void) out_str; 
-  return 0;
- }
+
+#define MSG_00F3_TO_JSON msg_m25_flash_write_status_t_to_json_str
+int msg_m25_flash_write_status_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_m25_flash_write_status_t * in, uint64_t max_len, char* out_str);
 
 /** \} */
 

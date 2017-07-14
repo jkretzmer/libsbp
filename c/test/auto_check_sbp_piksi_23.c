@@ -130,7 +130,8 @@ START_TEST( test_auto_check_sbp_piksi_23 )
     fail_unless(strstr(msg->name, ((char []){(char)109,(char)97,(char)105,(char)110,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0})) != NULL, "incorrect value for msg->name, expected string '%s', is '%s'", ((char []){(char)109,(char)97,(char)105,(char)110,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0}), msg->name);
     // print to string
     char test_str[1024];
-    msg_thread_state_t_to_json_str( ( msg_thread_state_t* ) msg, test_str, 1024);
+    msg_thread_state_t_to_json_str( last_sender_id, 0x17, last_len, ( msg_thread_state_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -176,7 +177,8 @@ START_TEST( test_auto_check_sbp_piksi_23 )
     fail_unless(strstr(msg->name, ((char []){(char)105,(char)100,(char)108,(char)101,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0})) != NULL, "incorrect value for msg->name, expected string '%s', is '%s'", ((char []){(char)105,(char)100,(char)108,(char)101,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0}), msg->name);
     // print to string
     char test_str[1024];
-    msg_thread_state_t_to_json_str( ( msg_thread_state_t* ) msg, test_str, 1024);
+    msg_thread_state_t_to_json_str( last_sender_id, 0x17, last_len, ( msg_thread_state_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -222,7 +224,8 @@ START_TEST( test_auto_check_sbp_piksi_23 )
     fail_unless(strstr(msg->name, ((char []){(char)78,(char)65,(char)80,(char)32,(char)73,(char)83,(char)82,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0})) != NULL, "incorrect value for msg->name, expected string '%s', is '%s'", ((char []){(char)78,(char)65,(char)80,(char)32,(char)73,(char)83,(char)82,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0}), msg->name);
     // print to string
     char test_str[1024];
-    msg_thread_state_t_to_json_str( ( msg_thread_state_t* ) msg, test_str, 1024);
+    msg_thread_state_t_to_json_str( last_sender_id, 0x17, last_len, ( msg_thread_state_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -268,7 +271,8 @@ START_TEST( test_auto_check_sbp_piksi_23 )
     fail_unless(strstr(msg->name, ((char []){(char)83,(char)66,(char)80,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0})) != NULL, "incorrect value for msg->name, expected string '%s', is '%s'", ((char []){(char)83,(char)66,(char)80,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0}), msg->name);
     // print to string
     char test_str[1024];
-    msg_thread_state_t_to_json_str( ( msg_thread_state_t* ) msg, test_str, 1024);
+    msg_thread_state_t_to_json_str( last_sender_id, 0x17, last_len, ( msg_thread_state_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -314,7 +318,8 @@ START_TEST( test_auto_check_sbp_piksi_23 )
     fail_unless(strstr(msg->name, ((char []){(char)109,(char)97,(char)110,(char)97,(char)103,(char)101,(char)32,(char)97,(char)99,(char)113,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0})) != NULL, "incorrect value for msg->name, expected string '%s', is '%s'", ((char []){(char)109,(char)97,(char)110,(char)97,(char)103,(char)101,(char)32,(char)97,(char)99,(char)113,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,(char)0,0}), msg->name);
     // print to string
     char test_str[1024];
-    msg_thread_state_t_to_json_str( ( msg_thread_state_t* ) msg, test_str, 1024);
+    msg_thread_state_t_to_json_str( last_sender_id, 0x17, last_len, ( msg_thread_state_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

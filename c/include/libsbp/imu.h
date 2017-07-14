@@ -46,11 +46,9 @@ time is unknown or invalid.
   s16 gyr_z;    /**< Angular rate around the body frame Z axis */
 } msg_imu_raw_t;
 
+
 #define MSG_0900_TO_JSON msg_imu_raw_t_to_json_str
-static inline int msg_imu_raw_t_to_json_str( msg_imu_raw_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{tow: %u, tow_f: %hhu, acc_x: %hd, acc_y: %hd, acc_z: %hd, gyr_x: %hd, gyr_y: %hd, gyr_z: %hd}", in->tow, in->tow_f, in->acc_x, in->acc_y, in->acc_z, in->gyr_x, in->gyr_y, in->gyr_z);
- }
+int msg_imu_raw_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_imu_raw_t * in, uint64_t max_len, char* out_str);
 
 /** Auxiliary IMU data
  *
@@ -65,11 +63,9 @@ typedef struct __attribute__((packed)) {
   u8 imu_conf;    /**< IMU configuration */
 } msg_imu_aux_t;
 
+
 #define MSG_0901_TO_JSON msg_imu_aux_t_to_json_str
-static inline int msg_imu_aux_t_to_json_str( msg_imu_aux_t * in, char* out_str, int max_len) {
-  (void) max_len;
-  return sprintf(out_str, "{imu_type: %hhu, temp: %hd, imu_conf: %hhu}", in->imu_type, in->temp, in->imu_conf);
- }
+int msg_imu_aux_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_imu_aux_t * in, uint64_t max_len, char* out_str);
 
 /** \} */
 

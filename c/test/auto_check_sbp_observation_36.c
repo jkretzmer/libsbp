@@ -172,7 +172,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless(msg->obs[6].lock == 15074, "incorrect value for obs[6].lock, expected 15074, is %d", msg->obs[6].lock);
     // print to string
     char test_str[1024];
-    msg_obs_dep_a_t_to_json_str( ( msg_obs_dep_a_t* ) msg, test_str, 1024);
+    msg_obs_dep_a_t_to_json_str( last_sender_id, 0x45, last_len, ( msg_obs_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -224,7 +225,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless(msg->obs[0].lock == 64062, "incorrect value for obs[0].lock, expected 64062, is %d", msg->obs[0].lock);
     // print to string
     char test_str[1024];
-    msg_obs_dep_a_t_to_json_str( ( msg_obs_dep_a_t* ) msg, test_str, 1024);
+    msg_obs_dep_a_t_to_json_str( last_sender_id, 0x45, last_len, ( msg_obs_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -312,7 +314,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless(msg->obs[6].lock == 15074, "incorrect value for obs[6].lock, expected 15074, is %d", msg->obs[6].lock);
     // print to string
     char test_str[1024];
-    msg_obs_dep_a_t_to_json_str( ( msg_obs_dep_a_t* ) msg, test_str, 1024);
+    msg_obs_dep_a_t_to_json_str( last_sender_id, 0x45, last_len, ( msg_obs_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -364,7 +367,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless(msg->obs[0].lock == 64062, "incorrect value for obs[0].lock, expected 64062, is %d", msg->obs[0].lock);
     // print to string
     char test_str[1024];
-    msg_obs_dep_a_t_to_json_str( ( msg_obs_dep_a_t* ) msg, test_str, 1024);
+    msg_obs_dep_a_t_to_json_str( last_sender_id, 0x45, last_len, ( msg_obs_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -440,7 +444,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless(msg->obs[4].lock == 22736, "incorrect value for obs[4].lock, expected 22736, is %d", msg->obs[4].lock);
     // print to string
     char test_str[1024];
-    msg_obs_dep_a_t_to_json_str( ( msg_obs_dep_a_t* ) msg, test_str, 1024);
+    msg_obs_dep_a_t_to_json_str( last_sender_id, 0x45, last_len, ( msg_obs_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -516,7 +521,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless(msg->obs[4].lock == 22736, "incorrect value for obs[4].lock, expected 22736, is %d", msg->obs[4].lock);
     // print to string
     char test_str[1024];
-    msg_obs_dep_a_t_to_json_str( ( msg_obs_dep_a_t* ) msg, test_str, 1024);
+    msg_obs_dep_a_t_to_json_str( last_sender_id, 0x45, last_len, ( msg_obs_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -586,7 +592,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless((msg->af2*100 - 0.0*100) < 0.05, "incorrect value for af2, expected 0.0, is %f", msg->af2);
     // print to string
     char test_str[1024];
-    msg_ephemeris_dep_b_t_to_json_str( ( msg_ephemeris_dep_b_t* ) msg, test_str, 1024);
+    msg_ephemeris_dep_b_t_to_json_str( last_sender_id, 0x46, last_len, ( msg_ephemeris_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -656,7 +663,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless((msg->af2*100 - 0.0*100) < 0.05, "incorrect value for af2, expected 0.0, is %f", msg->af2);
     // print to string
     char test_str[1024];
-    msg_ephemeris_dep_b_t_to_json_str( ( msg_ephemeris_dep_b_t* ) msg, test_str, 1024);
+    msg_ephemeris_dep_b_t_to_json_str( last_sender_id, 0x46, last_len, ( msg_ephemeris_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -726,7 +734,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless((msg->af2*100 - 0.0*100) < 0.05, "incorrect value for af2, expected 0.0, is %f", msg->af2);
     // print to string
     char test_str[1024];
-    msg_ephemeris_dep_b_t_to_json_str( ( msg_ephemeris_dep_b_t* ) msg, test_str, 1024);
+    msg_ephemeris_dep_b_t_to_json_str( last_sender_id, 0x46, last_len, ( msg_ephemeris_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -796,7 +805,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless((msg->af2*100 - 0.0*100) < 0.05, "incorrect value for af2, expected 0.0, is %f", msg->af2);
     // print to string
     char test_str[1024];
-    msg_ephemeris_dep_b_t_to_json_str( ( msg_ephemeris_dep_b_t* ) msg, test_str, 1024);
+    msg_ephemeris_dep_b_t_to_json_str( last_sender_id, 0x46, last_len, ( msg_ephemeris_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -866,7 +876,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless((msg->af2*100 - 0.0*100) < 0.05, "incorrect value for af2, expected 0.0, is %f", msg->af2);
     // print to string
     char test_str[1024];
-    msg_ephemeris_dep_b_t_to_json_str( ( msg_ephemeris_dep_b_t* ) msg, test_str, 1024);
+    msg_ephemeris_dep_b_t_to_json_str( last_sender_id, 0x46, last_len, ( msg_ephemeris_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -936,7 +947,8 @@ START_TEST( test_auto_check_sbp_observation_36 )
     fail_unless((msg->af2*100 - 0.0*100) < 0.05, "incorrect value for af2, expected 0.0, is %f", msg->af2);
     // print to string
     char test_str[1024];
-    msg_ephemeris_dep_b_t_to_json_str( ( msg_ephemeris_dep_b_t* ) msg, test_str, 1024);
+    msg_ephemeris_dep_b_t_to_json_str( last_sender_id, 0x46, last_len, ( msg_ephemeris_dep_b_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

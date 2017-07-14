@@ -130,7 +130,8 @@ START_TEST( test_auto_check_sbp_system_29 )
     fail_unless(msg->cause == 0, "incorrect value for cause, expected 0, is %d", msg->cause);
     // print to string
     char test_str[1024];
-    msg_startup_t_to_json_str( ( msg_startup_t* ) msg, test_str, 1024);
+    msg_startup_t_to_json_str( last_sender_id, 0xff00, last_len, ( msg_startup_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

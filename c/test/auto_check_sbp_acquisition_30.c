@@ -131,7 +131,8 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless(msg->prn == 8, "incorrect value for prn, expected 8, is %d", msg->prn);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_a_t_to_json_str( last_sender_id, 0x15, last_len, ( msg_acq_result_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -178,7 +179,8 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless(msg->prn == 9, "incorrect value for prn, expected 9, is %d", msg->prn);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_a_t_to_json_str( last_sender_id, 0x15, last_len, ( msg_acq_result_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -225,7 +227,8 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless(msg->prn == 11, "incorrect value for prn, expected 11, is %d", msg->prn);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_a_t_to_json_str( last_sender_id, 0x15, last_len, ( msg_acq_result_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -272,7 +275,8 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless(msg->prn == 12, "incorrect value for prn, expected 12, is %d", msg->prn);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_a_t_to_json_str( last_sender_id, 0x15, last_len, ( msg_acq_result_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -319,7 +323,8 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless(msg->prn == 14, "incorrect value for prn, expected 14, is %d", msg->prn);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_a_t_to_json_str( last_sender_id, 0x15, last_len, ( msg_acq_result_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -366,7 +371,8 @@ START_TEST( test_auto_check_sbp_acquisition_30 )
     fail_unless(msg->prn == 0, "incorrect value for prn, expected 0, is %d", msg->prn);
     // print to string
     char test_str[1024];
-    msg_acq_result_dep_a_t_to_json_str( ( msg_acq_result_dep_a_t* ) msg, test_str, 1024);
+    msg_acq_result_dep_a_t_to_json_str( last_sender_id, 0x15, last_len, ( msg_acq_result_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

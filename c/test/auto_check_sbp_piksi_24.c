@@ -149,7 +149,8 @@ START_TEST( test_auto_check_sbp_piksi_24 )
     fail_unless(msg->uart_ftdi.tx_buffer_level == 81, "incorrect value for uart_ftdi.tx_buffer_level, expected 81, is %d", msg->uart_ftdi.tx_buffer_level);
     // print to string
     char test_str[1024];
-    msg_uart_state_depa_t_to_json_str( ( msg_uart_state_depa_t* ) msg, test_str, 1024);
+    msg_uart_state_depa_t_to_json_str( last_sender_id, 0x18, last_len, ( msg_uart_state_depa_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -214,7 +215,8 @@ START_TEST( test_auto_check_sbp_piksi_24 )
     fail_unless(msg->uart_ftdi.tx_buffer_level == 85, "incorrect value for uart_ftdi.tx_buffer_level, expected 85, is %d", msg->uart_ftdi.tx_buffer_level);
     // print to string
     char test_str[1024];
-    msg_uart_state_depa_t_to_json_str( ( msg_uart_state_depa_t* ) msg, test_str, 1024);
+    msg_uart_state_depa_t_to_json_str( last_sender_id, 0x18, last_len, ( msg_uart_state_depa_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

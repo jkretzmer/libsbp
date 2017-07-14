@@ -134,7 +134,8 @@ START_TEST( test_auto_check_sbp_navigation_13 )
     fail_unless(msg->tow == 2567700, "incorrect value for tow, expected 2567700, is %d", msg->tow);
     // print to string
     char test_str[1024];
-    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_ecef_dep_a_t_to_json_str( last_sender_id, 0x200, last_len, ( msg_pos_ecef_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -184,7 +185,8 @@ START_TEST( test_auto_check_sbp_navigation_13 )
     fail_unless(msg->tow == 2567700, "incorrect value for tow, expected 2567700, is %d", msg->tow);
     // print to string
     char test_str[1024];
-    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_ecef_dep_a_t_to_json_str( last_sender_id, 0x200, last_len, ( msg_pos_ecef_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -234,7 +236,8 @@ START_TEST( test_auto_check_sbp_navigation_13 )
     fail_unless(msg->tow == 2567800, "incorrect value for tow, expected 2567800, is %d", msg->tow);
     // print to string
     char test_str[1024];
-    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_ecef_dep_a_t_to_json_str( last_sender_id, 0x200, last_len, ( msg_pos_ecef_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -284,7 +287,8 @@ START_TEST( test_auto_check_sbp_navigation_13 )
     fail_unless(msg->tow == 2567800, "incorrect value for tow, expected 2567800, is %d", msg->tow);
     // print to string
     char test_str[1024];
-    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_ecef_dep_a_t_to_json_str( last_sender_id, 0x200, last_len, ( msg_pos_ecef_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
   // Test successful parsing of a message
   {
@@ -334,7 +338,8 @@ START_TEST( test_auto_check_sbp_navigation_13 )
     fail_unless(msg->tow == 2567900, "incorrect value for tow, expected 2567900, is %d", msg->tow);
     // print to string
     char test_str[1024];
-    msg_pos_ecef_dep_a_t_to_json_str( ( msg_pos_ecef_dep_a_t* ) msg, test_str, 1024);
+    msg_pos_ecef_dep_a_t_to_json_str( last_sender_id, 0x200, last_len, ( msg_pos_ecef_dep_a_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

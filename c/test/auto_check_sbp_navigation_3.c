@@ -129,7 +129,8 @@ START_TEST( test_auto_check_sbp_navigation_3 )
     fail_unless(msg->tow == 100, "incorrect value for tow, expected 100, is %d", msg->tow);
     // print to string
     char test_str[1024];
-    msg_age_corrections_t_to_json_str( ( msg_age_corrections_t* ) msg, test_str, 1024);
+    msg_age_corrections_t_to_json_str( last_sender_id, 0x210, last_len, ( msg_age_corrections_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST

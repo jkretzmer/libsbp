@@ -128,7 +128,8 @@ START_TEST( test_auto_check_sbp_piksi_22 )
     fail_unless(msg->num_hyps == 1, "incorrect value for num_hyps, expected 1, is %d", msg->num_hyps);
     // print to string
     char test_str[1024];
-    msg_iar_state_t_to_json_str( ( msg_iar_state_t* ) msg, test_str, 1024);
+    msg_iar_state_t_to_json_str( last_sender_id, 0x19, last_len, ( msg_iar_state_t* ) msg, 1024, test_str);
+    fprintf(stdout, "%s\n", test_str);
   }
 }
 END_TEST
