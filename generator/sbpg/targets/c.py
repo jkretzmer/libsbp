@@ -120,9 +120,9 @@ def mk_arg_list_msg(struct):
   """Builds the arg list for a sprintf like command.
   """
   args = []
-  args.append("msg_len")
-  args.append("sender_id")
   args.append("msg_type")
+  args.append("sender_id")
+  args.append("msg_len")
   if entirely_simple(struct):
     for field in struct.fields:
       args.append(str("in->" + field.identifier))
