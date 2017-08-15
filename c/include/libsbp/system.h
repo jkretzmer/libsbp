@@ -39,9 +39,6 @@ typedef struct __attribute__((packed)) {
   u8 startup_type;    /**< Startup type */
   u16 reserved;        /**< Reserved */
 } msg_startup_t;
-
-
-#define MSG_FF00_TO_JSON msg_startup_t_to_json_str
 int msg_startup_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_startup_t * in, uint64_t max_len, char* out_str);
 
 /** Status of received corrections
@@ -57,9 +54,6 @@ typedef struct __attribute__((packed)) {
   u8 num_signals;    /**< Number of signals from base station */
   char source[0];      /**< Corrections source string */
 } msg_dgnss_status_t;
-
-
-#define MSG_FF02_TO_JSON msg_dgnss_status_t_to_json_str
 int msg_dgnss_status_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_dgnss_status_t * in, uint64_t max_len, char* out_str);
 
 /** System heartbeat message
@@ -79,9 +73,6 @@ int msg_dgnss_status_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg
 typedef struct __attribute__((packed)) {
   u32 flags;    /**< Status flags */
 } msg_heartbeat_t;
-
-
-#define MSG_FFFF_TO_JSON msg_heartbeat_t_to_json_str
 int msg_heartbeat_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_heartbeat_t * in, uint64_t max_len, char* out_str);
 
 /** \} */

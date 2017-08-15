@@ -51,9 +51,6 @@ typedef struct __attribute__((packed)) {
   u8 chunk_size;    /**< Chunk size to read [bytes] */
   char filename[0];   /**< Name of the file to read from */
 } msg_fileio_read_req_t;
-
-
-#define MSG_00A8_TO_JSON msg_fileio_read_req_t_to_json_str
 int msg_fileio_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_req_t * in, uint64_t max_len, char* out_str);
 
 /** File read from the file system (host <= device)
@@ -69,9 +66,6 @@ typedef struct __attribute__((packed)) {
   u32 sequence;    /**< Read sequence number */
   u8 contents[0]; /**< Contents of read file */
 } msg_fileio_read_resp_t;
-
-
-#define MSG_00A3_TO_JSON msg_fileio_read_resp_t_to_json_str
 int msg_fileio_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_resp_t * in, uint64_t max_len, char* out_str);
 
 /** List files in a directory (host => device)
@@ -94,9 +88,6 @@ typedef struct __attribute__((packed)) {
  */
   char dirname[0];  /**< Name of the directory to list */
 } msg_fileio_read_dir_req_t;
-
-
-#define MSG_00A9_TO_JSON msg_fileio_read_dir_req_t_to_json_str
 int msg_fileio_read_dir_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_dir_req_t * in, uint64_t max_len, char* out_str);
 
 /** Files listed in a directory (host <= device)
@@ -113,9 +104,6 @@ typedef struct __attribute__((packed)) {
   u32 sequence;    /**< Read sequence number */
   u8 contents[0]; /**< Contents of read directory */
 } msg_fileio_read_dir_resp_t;
-
-
-#define MSG_00AA_TO_JSON msg_fileio_read_dir_resp_t_to_json_str
 int msg_fileio_read_dir_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_read_dir_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Delete a file from the file system (host => device)
@@ -129,9 +117,6 @@ int msg_fileio_read_dir_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
 typedef struct __attribute__((packed)) {
   char filename[0]; /**< Name of the file to delete */
 } msg_fileio_remove_t;
-
-
-#define MSG_00AC_TO_JSON msg_fileio_remove_t_to_json_str
 int msg_fileio_remove_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_remove_t * in, uint64_t max_len, char* out_str);
 
 /** Write to file (host => device)
@@ -152,9 +137,6 @@ typedef struct __attribute__((packed)) {
   char filename[0]; /**< Name of the file to write to */
   u8 data[0];     /**< Variable-length array of data to write */
 } msg_fileio_write_req_t;
-
-
-#define MSG_00AD_TO_JSON msg_fileio_write_req_t_to_json_str
 int msg_fileio_write_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_write_req_t * in, uint64_t max_len, char* out_str);
 
 /** File written to (host <= device)
@@ -169,9 +151,6 @@ int msg_fileio_write_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
 typedef struct __attribute__((packed)) {
   u32 sequence;    /**< Write sequence number */
 } msg_fileio_write_resp_t;
-
-
-#define MSG_00AB_TO_JSON msg_fileio_write_resp_t_to_json_str
 int msg_fileio_write_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fileio_write_resp_t * in, uint64_t max_len, char* out_str);
 
 /** \} */

@@ -45,9 +45,6 @@ time is unknown or invalid.
   s16 gyr_y;    /**< Angular rate around the body frame Y axis */
   s16 gyr_z;    /**< Angular rate around the body frame Z axis */
 } msg_imu_raw_t;
-
-
-#define MSG_0900_TO_JSON msg_imu_raw_t_to_json_str
 int msg_imu_raw_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_imu_raw_t * in, uint64_t max_len, char* out_str);
 
 /** Auxiliary IMU data
@@ -62,9 +59,6 @@ typedef struct __attribute__((packed)) {
   s16 temp;        /**< Raw IMU temperature */
   u8 imu_conf;    /**< IMU configuration */
 } msg_imu_aux_t;
-
-
-#define MSG_0901_TO_JSON msg_imu_aux_t_to_json_str
 int msg_imu_aux_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_imu_aux_t * in, uint64_t max_len, char* out_str);
 
 /** \} */

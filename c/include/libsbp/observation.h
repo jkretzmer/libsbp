@@ -38,8 +38,6 @@ of the sequence (n), second nibble is the zero-indexed
 counter (ith packet of n)
  */
 } observation_header_t;
-
-
 int observation_header_t_to_json_str( observation_header_t * in, uint64_t max_len, char* out_str);
 
 /** GNSS doppler measurement.
@@ -53,8 +51,6 @@ typedef struct __attribute__((packed)) {
   s16 i;    /**< Doppler whole Hz [Hz] */
   u8 f;    /**< Doppler fractional part [Hz / 256] */
 } doppler_t;
-
-
 int doppler_t_to_json_str( doppler_t * in, uint64_t max_len, char* out_str);
 
 /** GNSS observations for a particular satellite signal.
@@ -81,8 +77,6 @@ estimate for the signal is valid.
  */
   gnss_signal16_t sid;      /**< GNSS signal identifier (16 bit) */
 } packed_obs_content_t;
-
-
 int packed_obs_content_t_to_json_str( packed_obs_content_t * in, uint64_t max_len, char* out_str);
 
 /** GPS satellite observations
@@ -102,9 +96,6 @@ typedef struct __attribute__((packed)) {
 satellite being tracked.
  */
 } msg_obs_t;
-
-
-#define MSG_004A_TO_JSON msg_obs_t_to_json_str
 int msg_obs_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_t * in, uint64_t max_len, char* out_str);
 
 /** Base station position
@@ -121,9 +112,6 @@ typedef struct __attribute__((packed)) {
   double lon;       /**< Longitude [deg] */
   double height;    /**< Height [m] */
 } msg_base_pos_llh_t;
-
-
-#define MSG_0044_TO_JSON msg_base_pos_llh_t_to_json_str
 int msg_base_pos_llh_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_base_pos_llh_t * in, uint64_t max_len, char* out_str);
 
 /** Base station position in ECEF
@@ -141,9 +129,6 @@ typedef struct __attribute__((packed)) {
   double y;    /**< ECEF Y coordinate [m] */
   double z;    /**< ECEF Z coordinate [m] */
 } msg_base_pos_ecef_t;
-
-
-#define MSG_0048_TO_JSON msg_base_pos_ecef_t_to_json_str
 int msg_base_pos_ecef_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_base_pos_ecef_t * in, uint64_t max_len, char* out_str);
 
 typedef struct __attribute__((packed)) {
@@ -158,8 +143,6 @@ SBAS: 0 = valid, non-zero = invalid
 GLO: 0 = valid, non-zero = invalid
  */
 } ephemeris_common_content_t;
-
-
 int ephemeris_common_content_t_to_json_str( ephemeris_common_content_t * in, uint64_t max_len, char* out_str);
 
 typedef struct __attribute__((packed)) {
@@ -174,8 +157,6 @@ SBAS: 0 = valid, non-zero = invalid
 GLO: 0 = valid, non-zero = invalid
  */
 } ephemeris_common_content_dep_a_t;
-
-
 int ephemeris_common_content_dep_a_t_to_json_str( ephemeris_common_content_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GPS
@@ -212,9 +193,6 @@ typedef struct __attribute__((packed)) {
   u8 iode;        /**< Issue of ephemeris data */
   u16 iodc;        /**< Issue of clock data */
 } msg_ephemeris_gps_dep_e_t;
-
-
-#define MSG_0081_TO_JSON msg_ephemeris_gps_dep_e_t_to_json_str
 int msg_ephemeris_gps_dep_e_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_gps_dep_e_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GPS
@@ -251,9 +229,6 @@ typedef struct __attribute__((packed)) {
   u8 iode;        /**< Issue of ephemeris data */
   u16 iodc;        /**< Issue of clock data */
 } msg_ephemeris_gps_t;
-
-
-#define MSG_0086_TO_JSON msg_ephemeris_gps_t_to_json_str
 int msg_ephemeris_gps_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_gps_t * in, uint64_t max_len, char* out_str);
 
 #define SBP_MSG_EPHEMERIS_SBAS_DEP_A 0x0082
@@ -265,9 +240,6 @@ typedef struct __attribute__((packed)) {
   double a_gf0;     /**< Time offset of the GEO clock w.r.t. SBAS Network Time [s] */
   double a_gf1;     /**< Drift of the GEO clock w.r.t. SBAS Network Time [s/s] */
 } msg_ephemeris_sbas_dep_a_t;
-
-
-#define MSG_0082_TO_JSON msg_ephemeris_sbas_dep_a_t_to_json_str
 int msg_ephemeris_sbas_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_sbas_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GLO
@@ -287,9 +259,6 @@ typedef struct __attribute__((packed)) {
   double vel[3];    /**< Velocity vector of the SV at tb in PZ-90.02 coordinates system [m/s] */
   double acc[3];    /**< Acceleration vector of the SV at tb in PZ-90.02 coordinates sys [m/s^2] */
 } msg_ephemeris_glo_dep_a_t;
-
-
-#define MSG_0083_TO_JSON msg_ephemeris_glo_dep_a_t_to_json_str
 int msg_ephemeris_glo_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_glo_dep_a_t * in, uint64_t max_len, char* out_str);
 
 #define SBP_MSG_EPHEMERIS_SBAS       0x0084
@@ -301,9 +270,6 @@ typedef struct __attribute__((packed)) {
   double a_gf0;     /**< Time offset of the GEO clock w.r.t. SBAS Network Time [s] */
   double a_gf1;     /**< Drift of the GEO clock w.r.t. SBAS Network Time [s/s] */
 } msg_ephemeris_sbas_t;
-
-
-#define MSG_0084_TO_JSON msg_ephemeris_sbas_t_to_json_str
 int msg_ephemeris_sbas_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_sbas_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GLO
@@ -323,9 +289,6 @@ typedef struct __attribute__((packed)) {
   double vel[3];    /**< Velocity vector of the SV at tb in PZ-90.02 coordinates system [m/s] */
   double acc[3];    /**< Acceleration vector of the SV at tb in PZ-90.02 coordinates sys [m/s^2] */
 } msg_ephemeris_glo_dep_b_t;
-
-
-#define MSG_0085_TO_JSON msg_ephemeris_glo_dep_b_t_to_json_str
 int msg_ephemeris_glo_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_glo_dep_b_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GLO
@@ -347,9 +310,6 @@ typedef struct __attribute__((packed)) {
   double acc[3];    /**< Acceleration vector of the SV at tb in PZ-90.02 coordinates sys [m/s^2] */
   u8 fcn;       /**< Frequency slot. FCN+8 (that is [1..14]). 0 or 0xFF for invalid */
 } msg_ephemeris_glo_dep_c_t;
-
-
-#define MSG_0087_TO_JSON msg_ephemeris_glo_dep_c_t_to_json_str
 int msg_ephemeris_glo_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_glo_dep_c_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GLO
@@ -372,9 +332,6 @@ typedef struct __attribute__((packed)) {
   u8 fcn;       /**< Frequency slot. FCN+8 (that is [1..14]). 0 or 0xFF for invalid */
   u8 iod;       /**< Issue of ephemeris data */
 } msg_ephemeris_glo_t;
-
-
-#define MSG_0088_TO_JSON msg_ephemeris_glo_t_to_json_str
 int msg_ephemeris_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_glo_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris
@@ -417,9 +374,6 @@ typedef struct __attribute__((packed)) {
   u16 iodc;        /**< Issue of clock data */
   u32 reserved;    /**< Reserved field */
 } msg_ephemeris_dep_d_t;
-
-
-#define MSG_0080_TO_JSON msg_ephemeris_dep_d_t_to_json_str
 int msg_ephemeris_dep_d_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_dep_d_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
@@ -455,9 +409,6 @@ typedef struct __attribute__((packed)) {
   u8 healthy;     /**< Satellite is healthy? */
   u8 prn;         /**< PRN being tracked */
 } msg_ephemeris_dep_a_t;
-
-
-#define MSG_001A_TO_JSON msg_ephemeris_dep_a_t_to_json_str
 int msg_ephemeris_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
@@ -494,9 +445,6 @@ typedef struct __attribute__((packed)) {
   u8 prn;         /**< PRN being tracked */
   u8 iode;        /**< Issue of ephemeris data */
 } msg_ephemeris_dep_b_t;
-
-
-#define MSG_0046_TO_JSON msg_ephemeris_dep_b_t_to_json_str
 int msg_ephemeris_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_dep_b_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris
@@ -539,9 +487,6 @@ typedef struct __attribute__((packed)) {
   u16 iodc;        /**< Issue of clock data */
   u32 reserved;    /**< Reserved field */
 } msg_ephemeris_dep_c_t;
-
-
-#define MSG_0047_TO_JSON msg_ephemeris_dep_c_t_to_json_str
 int msg_ephemeris_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ephemeris_dep_c_t * in, uint64_t max_len, char* out_str);
 
 /** Header for observation message.
@@ -555,8 +500,6 @@ of the sequence (n), second nibble is the zero-indexed
 counter (ith packet of n)
  */
 } observation_header_dep_t;
-
-
 int observation_header_dep_t_to_json_str( observation_header_dep_t * in, uint64_t max_len, char* out_str);
 
 /** GPS carrier phase measurement.
@@ -571,8 +514,6 @@ typedef struct __attribute__((packed)) {
   s32 i;    /**< Carrier phase whole cycles [cycles] */
   u8 f;    /**< Carrier phase fractional part [cycles / 256] */
 } carrier_phase_dep_a_t;
-
-
 int carrier_phase_dep_a_t_to_json_str( carrier_phase_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
@@ -589,8 +530,6 @@ carrier phase ambiguity may have changed.
  */
   u8 prn;     /**< PRN-1 identifier of the satellite signal */
 } packed_obs_content_dep_a_t;
-
-
 int packed_obs_content_dep_a_t_to_json_str( packed_obs_content_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** GPS observations for a particular satellite signal.
@@ -608,8 +547,6 @@ carrier phase ambiguity may have changed.
  */
   sbp_gnss_signal_t sid;     /**< GNSS signal identifier */
 } packed_obs_content_dep_b_t;
-
-
 int packed_obs_content_dep_b_t_to_json_str( packed_obs_content_dep_b_t * in, uint64_t max_len, char* out_str);
 
 /** GPS observations for a particular satellite signal.
@@ -628,8 +565,6 @@ carrier phase ambiguity may have changed.
  */
   sbp_gnss_signal_t sid;     /**< GNSS signal identifier */
 } packed_obs_content_dep_c_t;
-
-
 int packed_obs_content_dep_c_t_to_json_str( packed_obs_content_dep_c_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
@@ -643,9 +578,6 @@ typedef struct __attribute__((packed)) {
 satellite being tracked.
  */
 } msg_obs_dep_a_t;
-
-
-#define MSG_0045_TO_JSON msg_obs_dep_a_t_to_json_str
 int msg_obs_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
@@ -664,9 +596,6 @@ typedef struct __attribute__((packed)) {
 satellite being tracked.
  */
 } msg_obs_dep_b_t;
-
-
-#define MSG_0043_TO_JSON msg_obs_dep_b_t_to_json_str
 int msg_obs_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_dep_b_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
@@ -686,9 +615,6 @@ typedef struct __attribute__((packed)) {
 satellite being tracked.
  */
 } msg_obs_dep_c_t;
-
-
-#define MSG_0049_TO_JSON msg_obs_dep_c_t_to_json_str
 int msg_obs_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_dep_c_t * in, uint64_t max_len, char* out_str);
 
 /** Iono corrections
@@ -709,9 +635,6 @@ typedef struct __attribute__((packed)) {
   double b2;       
   double b3;       
 } msg_iono_t;
-
-
-#define MSG_0090_TO_JSON msg_iono_t_to_json_str
 int msg_iono_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_iono_t * in, uint64_t max_len, char* out_str);
 
 /** L2C capability mask
@@ -723,9 +646,6 @@ typedef struct __attribute__((packed)) {
   gps_time_sec_t t_nmct;      /**< Navigation Message Correction Table Valitidy Time */
   u32 l2c_mask;    /**< L2C capability mask, SV32 bit being MSB, SV1 bit being LSB */
 } msg_sv_configuration_gps_t;
-
-
-#define MSG_0091_TO_JSON msg_sv_configuration_gps_t_to_json_str
 int msg_sv_configuration_gps_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_sv_configuration_gps_t * in, uint64_t max_len, char* out_str);
 
 /** Group Delay
@@ -744,9 +664,6 @@ LSB indicating tgd validity etc.
   s16 isc_l1ca;   
   s16 isc_l2c;    
 } msg_group_delay_dep_a_t;
-
-
-#define MSG_0092_TO_JSON msg_group_delay_dep_a_t_to_json_str
 int msg_group_delay_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_group_delay_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** Group Delay
@@ -765,9 +682,6 @@ LSB indicating tgd validity etc.
   s16 isc_l1ca;   
   s16 isc_l2c;    
 } msg_group_delay_t;
-
-
-#define MSG_0093_TO_JSON msg_group_delay_t_to_json_str
 int msg_group_delay_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_group_delay_t * in, uint64_t max_len, char* out_str);
 
 typedef struct __attribute__((packed)) {
@@ -793,8 +707,6 @@ Satellite health status for GLO:
     and suitable for navigation.
  */
 } almanac_common_content_t;
-
-
 int almanac_common_content_t_to_json_str( almanac_common_content_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GPS
@@ -817,9 +729,6 @@ typedef struct __attribute__((packed)) {
   double af0;         /**< Polynomial clock correction coefficient (clock bias) [s] */
   double af1;         /**< Polynomial clock correction coefficient (clock drift) [s/s] */
 } msg_almanac_gps_t;
-
-
-#define MSG_0070_TO_JSON msg_almanac_gps_t_to_json_str
 int msg_almanac_gps_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_almanac_gps_t * in, uint64_t max_len, char* out_str);
 
 /** Satellite broadcast ephemeris for GLO
@@ -842,9 +751,6 @@ coordinate system
   double epsilon;        /**< Eccentricity at instant of t_lambda */
   double omega;          /**< Argument of perigee at instant of t_lambda [rad] */
 } msg_almanac_glo_t;
-
-
-#define MSG_0071_TO_JSON msg_almanac_glo_t_to_json_str
 int msg_almanac_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_almanac_glo_t * in, uint64_t max_len, char* out_str);
 
 /** GLONASS SV orbital and frequency slots mapping information
@@ -867,9 +773,6 @@ typedef struct __attribute__((packed)) {
   u32 tow_ms;    /**< GPS Time of week [ms] */
   u8 fcns[32];  /**< GLONASS fequency number per orbital slot */
 } msg_fcns_glo_t;
-
-
-#define MSG_0072_TO_JSON msg_fcns_glo_t_to_json_str
 int msg_fcns_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fcns_glo_t * in, uint64_t max_len, char* out_str);
 
 /** \} */

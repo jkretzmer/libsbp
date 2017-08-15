@@ -37,9 +37,6 @@
  * response from the device is MSG_BOOTLOADER_HANDSHAKE_RESP.
  */
 #define SBP_MSG_BOOTLOADER_HANDSHAKE_REQ   0x00B3
-
-
-#define MSG_00B3_TO_JSON msg_bootloader_handshake_req_t_to_json_str
 int msg_bootloader_handshake_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, void * in, uint64_t max_len, char* out_str);
 
 /** Bootloading handshake response (host <= device)
@@ -55,9 +52,6 @@ typedef struct __attribute__((packed)) {
   u32 flags;      /**< Bootloader flags */
   char version[0]; /**< Bootloader version number */
 } msg_bootloader_handshake_resp_t;
-
-
-#define MSG_00B4_TO_JSON msg_bootloader_handshake_resp_t_to_json_str
 int msg_bootloader_handshake_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_bootloader_handshake_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Bootloader jump to application (host => device)
@@ -68,9 +62,6 @@ int msg_bootloader_handshake_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8
 typedef struct __attribute__((packed)) {
   u8 jump;    /**< Ignored by the device */
 } msg_bootloader_jump_to_app_t;
-
-
-#define MSG_00B1_TO_JSON msg_bootloader_jump_to_app_t_to_json_str
 int msg_bootloader_jump_to_app_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_bootloader_jump_to_app_t * in, uint64_t max_len, char* out_str);
 
 /** Read FPGA device ID over UART request (host => device)
@@ -83,9 +74,6 @@ int msg_bootloader_jump_to_app_t_to_json_str( u16 sender_id, u16 msg_type, u8 ms
  * and not related to the Piksi's serial number.
  */
 #define SBP_MSG_NAP_DEVICE_DNA_REQ         0x00DE
-
-
-#define MSG_00DE_TO_JSON msg_nap_device_dna_req_t_to_json_str
 int msg_nap_device_dna_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, void * in, uint64_t max_len, char* out_str);
 
 /** Read FPGA device ID over UART response (host <= device)
@@ -103,9 +91,6 @@ typedef struct __attribute__((packed)) {
 on the right.
  */
 } msg_nap_device_dna_resp_t;
-
-
-#define MSG_00DD_TO_JSON msg_nap_device_dna_resp_t_to_json_str
 int msg_nap_device_dna_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_nap_device_dna_resp_t * in, uint64_t max_len, char* out_str);
 
 /** Deprecated
@@ -116,9 +101,6 @@ int msg_nap_device_dna_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
 typedef struct __attribute__((packed)) {
   u8 handshake[0]; /**< Version number string (not NULL terminated) */
 } msg_bootloader_handshake_dep_a_t;
-
-
-#define MSG_00B0_TO_JSON msg_bootloader_handshake_dep_a_t_to_json_str
 int msg_bootloader_handshake_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_bootloader_handshake_dep_a_t * in, uint64_t max_len, char* out_str);
 
 /** \} */
