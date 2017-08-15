@@ -50,9 +50,6 @@ typedef struct __attribute__((packed)) {
 } (((m.identifier|convert)));
 ((*- endif *))
 
-((* if m.sbp_id *))
-#define MSG_((('%04X'|format(m.sbp_id))))_TO_JSON (((m.identifier|convert)))_to_json_str
-((*- endif *))
 ((*- if m.fields *))
 ((*- set in_ptr_type=(((m.identifier|convert))) *))
 ((*- else *))
