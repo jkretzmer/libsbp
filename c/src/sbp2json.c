@@ -10,6 +10,7 @@
  * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 #include <stdio.h>
+#include <ctype.h>
 #include "../include/libsbp/common.h"
 #include "../include/libsbp/acquisition.h"
 #include "../include/libsbp/bootload.h"
@@ -59,7 +60,6 @@ int msg_acq_result_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_a
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %f", in->cn0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cp\": %f", in->cp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cf\": %f", in->cf);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -84,7 +84,6 @@ int msg_acq_result_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"snr\": %f", in->snr);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cp\": %f", in->cp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cf\": %f", in->cf);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -116,7 +115,6 @@ int acq_sv_profile_t_to_json_str( acq_sv_profile_t * in, uint64_t max_len, char*
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"status\": %hhu", in->status);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %hu", in->cn0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"int_time\": %hhu", in->int_time);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"bin_width\": %hu", in->bin_width);
@@ -195,8 +193,16 @@ int msg_bootloader_handshake_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"flags\": %u, \"version\": \"%s\"}", msg_type, sender_id, msg_len, in->flags, in->version);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"flags\": %u", in->flags);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00B1_TO_JSON msg_bootloader_jump_to_app_t_to_json_str
 
 
@@ -328,8 +334,18 @@ int msg_fileio_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, 
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"sequence\": %u, \"offset\": %u, \"chunk_size\": %hhu, \"filename\": \"%s\"}", msg_type, sender_id, msg_len, in->sequence, in->offset, in->chunk_size, in->filename);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sequence\": %u", in->sequence);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"offset\": %u", in->offset);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"chunk_size\": %hhu", in->chunk_size);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00A3_TO_JSON msg_fileio_read_resp_t_to_json_str
 
 
@@ -360,8 +376,17 @@ int msg_fileio_read_dir_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"sequence\": %u, \"offset\": %u, \"dirname\": \"%s\"}", msg_type, sender_id, msg_len, in->sequence, in->offset, in->dirname);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sequence\": %u", in->sequence);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"offset\": %u", in->offset);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00AA_TO_JSON msg_fileio_read_dir_resp_t_to_json_str
 
 
@@ -392,8 +417,15 @@ int msg_fileio_remove_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"filename\": \"%s\"}", msg_type, sender_id, msg_len, in->filename);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00AD_TO_JSON msg_fileio_write_req_t_to_json_str
 
 
@@ -413,7 +445,6 @@ int msg_fileio_write_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sequence\": %u", in->sequence);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"offset\": %u", in->offset);
-  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"filename\": \"%s\"", in->filename);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00AB_TO_JSON msg_fileio_write_resp_t_to_json_str
@@ -746,8 +777,16 @@ int msg_log_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_log_t * 
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"level\": %hhu, \"text\": \"%s\"}", msg_type, sender_id, msg_len, in->level, in->text);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"level\": %hhu", in->level);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_0402_TO_JSON msg_fwd_t_to_json_str
 
 
@@ -758,8 +797,17 @@ int msg_fwd_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fwd_t * 
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"source\": %hhu, \"protocol\": %hhu, \"fwd_payload\": \"%s\"}", msg_type, sender_id, msg_len, in->source, in->protocol, in->fwd_payload);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"source\": %hhu", in->source);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"protocol\": %hhu", in->protocol);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_0012_TO_JSON msg_tweet_t_to_json_str
 
 
@@ -770,8 +818,26 @@ int msg_tweet_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_tweet_
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"tweet\": \"%s\"}", msg_type, sender_id, msg_len, in->tweet);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"tweet\":\"");
+  for (int i=0; i < 140; i++) {
+    unsigned char c = in->tweet[i];
+    if (isprint(c) && c != '\\') {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
+    }
+    else {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
+    }
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_0010_TO_JSON msg_print_dep_t_to_json_str
 
 
@@ -782,8 +848,15 @@ int msg_print_dep_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_pr
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"text\": \"%s\"}", msg_type, sender_id, msg_len, in->text);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
 
 
 
@@ -1086,10 +1159,8 @@ int msg_ndb_event_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_nd
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"object_type\": %hhu", in->object_type);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"result\": %hhu", in->result);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"data_source\": %hhu", in->data_source);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"object_sid\":");
   json_bufp += gnss_signal16_t_to_json_str(&in->object_sid, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"src_sid\":");
   json_bufp += gnss_signal16_t_to_json_str(&in->src_sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"original_sender\": %hu", in->original_sender);
@@ -1121,7 +1192,6 @@ int observation_header_t_to_json_str( observation_header_t * in, uint64_t max_le
   (void) json_end;
   (void) json_bufp; 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"t\":");
   json_bufp += gps_time_nano_t_to_json_str(&in->t, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"n_obs\": %hhu", in->n_obs);
@@ -1146,16 +1216,13 @@ int packed_obs_content_t_to_json_str( packed_obs_content_t * in, uint64_t max_le
   (void) json_bufp; 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"P\": %u", in->P);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"L\":");
   json_bufp += carrier_phase_t_to_json_str(&in->L, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"D\":");
   json_bufp += doppler_t_to_json_str(&in->D, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %hhu", in->cn0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"lock\": %hhu", in->lock);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"flags\": %hhu", in->flags);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += gnss_signal16_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1177,7 +1244,6 @@ int msg_obs_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_t * 
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"header\":");
   json_bufp += observation_header_t_to_json_str(&in->header, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1217,10 +1283,8 @@ int ephemeris_common_content_t_to_json_str( ephemeris_common_content_t * in, uin
   (void) json_end;
   (void) json_bufp; 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += gnss_signal16_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"toe\":");
   json_bufp += gps_time_sec_t_to_json_str(&in->toe, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"ura\": %f", in->ura);
@@ -1240,10 +1304,8 @@ int ephemeris_common_content_dep_a_t_to_json_str( ephemeris_common_content_dep_a
   (void) json_end;
   (void) json_bufp; 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"toe\":");
   json_bufp += sbp_gps_time_t_to_json_str(&in->toe, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"ura\": %f", in->ura);
@@ -1269,7 +1331,6 @@ int msg_ephemeris_gps_dep_e_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_dep_a_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"tgd\": %f", in->tgd);
@@ -1291,7 +1352,6 @@ int msg_ephemeris_gps_dep_e_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"af0\": %f", in->af0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"af1\": %f", in->af1);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"af2\": %f", in->af2);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"toc\":");
   json_bufp += sbp_gps_time_t_to_json_str(&in->toc, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"iode\": %hhu", in->iode);
@@ -1315,7 +1375,6 @@ int msg_ephemeris_gps_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"tgd\": %f", in->tgd);
@@ -1337,7 +1396,6 @@ int msg_ephemeris_gps_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"af0\": %f", in->af0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"af1\": %f", in->af1);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"af2\": %f", in->af2);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"toc\":");
   json_bufp += gps_time_sec_t_to_json_str(&in->toc, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"iode\": %hhu", in->iode);
@@ -1361,7 +1419,6 @@ int msg_ephemeris_sbas_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_dep_a_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"pos\": {");
@@ -1391,7 +1448,6 @@ int msg_ephemeris_glo_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_dep_a_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"gamma\": %f", in->gamma);
@@ -1421,7 +1477,6 @@ int msg_ephemeris_sbas_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"pos\": {");
@@ -1451,7 +1506,6 @@ int msg_ephemeris_glo_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"gamma\": %f", in->gamma);
@@ -1481,7 +1535,6 @@ int msg_ephemeris_glo_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"gamma\": %f", in->gamma);
@@ -1513,7 +1566,6 @@ int msg_ephemeris_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += ephemeris_common_content_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"gamma\": %f", in->gamma);
@@ -1571,7 +1623,6 @@ int msg_ephemeris_dep_d_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, 
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"toc_wn\": %hu", in->toc_wn);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"valid\": %hhu", in->valid);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"healthy\": %hhu", in->healthy);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"iode\": %hhu", in->iode);
@@ -1645,7 +1696,6 @@ int msg_ephemeris_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, 
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"toc_wn\": %hu", in->toc_wn);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"valid\": %hhu", in->valid);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"healthy\": %hhu", in->healthy);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"iode\": %hhu", in->iode);
@@ -1664,7 +1714,6 @@ int observation_header_dep_t_to_json_str( observation_header_dep_t * in, uint64_
   (void) json_end;
   (void) json_bufp; 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"t\":");
   json_bufp += sbp_gps_time_t_to_json_str(&in->t, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"n_obs\": %hhu", in->n_obs);
@@ -1689,7 +1738,6 @@ int packed_obs_content_dep_a_t_to_json_str( packed_obs_content_dep_a_t * in, uin
   (void) json_bufp; 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"P\": %u", in->P);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"L\":");
   json_bufp += carrier_phase_dep_a_t_to_json_str(&in->L, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %hhu", in->cn0);
@@ -1709,12 +1757,10 @@ int packed_obs_content_dep_b_t_to_json_str( packed_obs_content_dep_b_t * in, uin
   (void) json_bufp; 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"P\": %u", in->P);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"L\":");
   json_bufp += carrier_phase_dep_a_t_to_json_str(&in->L, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %hhu", in->cn0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"lock\": %hu", in->lock);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1731,12 +1777,10 @@ int packed_obs_content_dep_c_t_to_json_str( packed_obs_content_dep_c_t * in, uin
   (void) json_bufp; 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"P\": %u", in->P);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"L\":");
   json_bufp += carrier_phase_t_to_json_str(&in->L, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %hhu", in->cn0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"lock\": %hu", in->lock);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1758,7 +1802,6 @@ int msg_obs_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"header\":");
   json_bufp += observation_header_dep_t_to_json_str(&in->header, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1780,7 +1823,6 @@ int msg_obs_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"header\":");
   json_bufp += observation_header_dep_t_to_json_str(&in->header, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1802,7 +1844,6 @@ int msg_obs_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"header\":");
   json_bufp += observation_header_dep_t_to_json_str(&in->header, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1824,7 +1865,6 @@ int msg_iono_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_iono_t 
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"t_nmct\":");
   json_bufp += gps_time_sec_t_to_json_str(&in->t_nmct, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"a0\": %f", in->a0);
@@ -1854,7 +1894,6 @@ int msg_sv_configuration_gps_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"t_nmct\":");
   json_bufp += gps_time_sec_t_to_json_str(&in->t_nmct, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"l2c_mask\": %u", in->l2c_mask);
@@ -1877,7 +1916,6 @@ int msg_group_delay_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"t_op\":");
   json_bufp += sbp_gps_time_t_to_json_str(&in->t_op, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"prn\": %hhu", in->prn);
@@ -1904,10 +1942,8 @@ int msg_group_delay_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"t_op\":");
   json_bufp += gps_time_sec_t_to_json_str(&in->t_op, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"valid\": %hhu", in->valid);
@@ -1927,10 +1963,8 @@ int almanac_common_content_t_to_json_str( almanac_common_content_t * in, uint64_
   (void) json_end;
   (void) json_bufp; 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"toa\":");
   json_bufp += gps_time_sec_t_to_json_str(&in->toa, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"ura\": %f", in->ura);
@@ -1956,7 +1990,6 @@ int msg_almanac_gps_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += almanac_common_content_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"m0\": %f", in->m0);
@@ -1987,7 +2020,6 @@ int msg_almanac_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"common\":");
   json_bufp += almanac_common_content_t_to_json_str(&in->common, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"lambda_na\": %f", in->lambda_na);
@@ -2187,8 +2219,28 @@ int msg_thread_state_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"name\": \"%s\", \"cpu\": %hu, \"stack_free\": %u}", msg_type, sender_id, msg_len, in->name, in->cpu, in->stack_free);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"name\":\"");
+  for (int i=0; i < 20; i++) {
+    unsigned char c = in->name[i];
+    if (isprint(c) && c != '\\') {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
+    }
+    else {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
+    }
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cpu\": %hu", in->cpu);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"stack_free\": %u", in->stack_free);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  
 int uart_channel_t_to_json_str( uart_channel_t * in, uint64_t max_len, char* out_str) {
   (void) in;
@@ -2227,19 +2279,14 @@ int msg_uart_state_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_u
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"uart_a\":");
   json_bufp += uart_channel_t_to_json_str(&in->uart_a, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"uart_b\":");
   json_bufp += uart_channel_t_to_json_str(&in->uart_b, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"uart_ftdi\":");
   json_bufp += uart_channel_t_to_json_str(&in->uart_ftdi, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"latency\":");
   json_bufp += latency_t_to_json_str(&in->latency, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"obs_period\":");
   json_bufp += period_t_to_json_str(&in->obs_period, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -2261,16 +2308,12 @@ int msg_uart_state_depa_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, 
   (void) json_bufp;
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"uart_a\":");
   json_bufp += uart_channel_t_to_json_str(&in->uart_a, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"uart_b\":");
   json_bufp += uart_channel_t_to_json_str(&in->uart_b, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"uart_ftdi\":");
   json_bufp += uart_channel_t_to_json_str(&in->uart_ftdi, json_end - json_bufp, json_bufp);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"latency\":");
   json_bufp += latency_t_to_json_str(&in->latency, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -2305,7 +2348,6 @@ int msg_mask_satellite_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"mask\": %hhu", in->mask);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -2332,8 +2374,16 @@ int msg_command_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"sequence\": %u, \"command\": \"%s\"}", msg_type, sender_id, msg_len, in->sequence, in->command);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sequence\": %u", in->sequence);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00B9_TO_JSON msg_command_resp_t_to_json_str
 
 
@@ -2356,8 +2406,16 @@ int msg_command_output_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"sequence\": %u, \"line\": \"%s\"}", msg_type, sender_id, msg_len, in->sequence, in->line);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sequence\": %u", in->sequence);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00BA_TO_JSON msg_network_state_req_t_to_json_str
 
 
@@ -2402,7 +2460,17 @@ int msg_network_state_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_le
   for (int i=0; i < 16; i++) {json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->ipv6_address[i]);}json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"ipv6_mask_size\": %hhu", in->ipv6_mask_size);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"rx_bytes\": %u", in->rx_bytes);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"tx_bytes\": %u", in->tx_bytes);
-  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"interface_name\": \"%s\"", in->interface_name);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"interface_name\":\"");
+  for (int i=0; i < 16; i++) {
+    unsigned char c = in->interface_name[i];
+    if (isprint(c) && c != '\\') {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
+    }
+    else {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
+    }
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"flags\": %u", in->flags);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
@@ -2424,7 +2492,6 @@ int msg_specan_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_speca
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"channel_tag\": %hu", in->channel_tag);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"t\":");
   json_bufp += sbp_gps_time_t_to_json_str(&in->t, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"freq_ref\": %f", in->freq_ref);
@@ -2483,8 +2550,15 @@ int msg_settings_write_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"setting\": \"%s\"}", msg_type, sender_id, msg_len, in->setting);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00A4_TO_JSON msg_settings_read_req_t_to_json_str
 
 
@@ -2495,8 +2569,15 @@ int msg_settings_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"setting\": \"%s\"}", msg_type, sender_id, msg_len, in->setting);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00A5_TO_JSON msg_settings_read_resp_t_to_json_str
 
 
@@ -2507,8 +2588,15 @@ int msg_settings_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_le
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"setting\": \"%s\"}", msg_type, sender_id, msg_len, in->setting);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00A2_TO_JSON msg_settings_read_by_index_req_t_to_json_str
 
 
@@ -2531,8 +2619,16 @@ int msg_settings_read_by_index_resp_t_to_json_str( u16 sender_id, u16 msg_type, 
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"index\": %hu, \"setting\": \"%s\"}", msg_type, sender_id, msg_len, in->index, in->setting);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"index\": %hu", in->index);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_00A6_TO_JSON msg_settings_read_by_index_done_t_to_json_str
 
 
@@ -2562,8 +2658,15 @@ int msg_settings_register_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"setting\": \"%s\"}", msg_type, sender_id, msg_len, in->setting);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
 
 
 
@@ -2601,8 +2704,18 @@ int msg_dgnss_status_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg
   (void) in;
   (void) out_str;
   (void) max_len;
+     
+  char * const json_end = (char*) out_str + max_len; 
+  char * json_bufp = (char*) out_str;
+  (void) json_end;
+  (void) json_bufp;
+  json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
-  return sprintf(out_str, "{\"msg_type\": %u, \"sender\": %u, \"length\": %u, \"flags\": %hhu, \"latency\": %hu, \"num_signals\": %hhu, \"source\": \"%s\"}", msg_type, sender_id, msg_len, in->flags, in->latency, in->num_signals, in->source);} 
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"flags\": %hhu", in->flags);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"latency\": %hu", in->latency);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"num_signals\": %hhu", in->num_signals);
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  return json_bufp - out_str;} 
  #define MSG_FFFF_TO_JSON msg_heartbeat_t_to_json_str
 
 
@@ -2648,17 +2761,14 @@ int msg_tracking_state_detailed_t_to_json_str( u16 sender_id, u16 msg_type, u8 m
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"recv_time\": %llu", in->recv_time);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"tot\":");
   json_bufp += sbp_gps_time_t_to_json_str(&in->tot, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"P\": %u", in->P);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"P_std\": %hu", in->P_std);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"L\":");
   json_bufp += carrier_phase_t_to_json_str(&in->L, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %hhu", in->cn0);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"lock\": %hu", in->lock);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"doppler\": %d", in->doppler);
@@ -2687,7 +2797,6 @@ int tracking_channel_state_t_to_json_str( tracking_channel_state_t * in, uint64_
   (void) json_end;
   (void) json_bufp; 
    
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += gnss_signal16_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"fcn\": %hhu", in->fcn);
@@ -2738,7 +2847,6 @@ int msg_tracking_iq_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_
   json_bufp += snprintf(out_str, json_end - json_bufp, "{\"msg_type\": %u, \"sender\":%u, \"length\":%u", msg_type, sender_id, msg_len); 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"channel\": %hhu", in->channel);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"corrs\": {");
@@ -2783,7 +2891,6 @@ int tracking_channel_state_dep_b_t_to_json_str( tracking_channel_state_dep_b_t *
   (void) json_bufp; 
    
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"state\": %hhu", in->state);
-  
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"sid\":");
   json_bufp += sbp_gnss_signal_t_to_json_str(&in->sid, json_end - json_bufp, json_bufp);
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"cn0\": %f", in->cn0);

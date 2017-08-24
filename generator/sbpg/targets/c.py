@@ -73,15 +73,21 @@ def mk_id(field):
   else:
     return name
 
-def entirely_simple(struct):
-  is_simple = [f.type_id in CONSTRUCT_CODE for f in struct.fields]
-  if all(is_simple) or len(is_simple) == 0:
+def is_string(f):
+  if f == 'string' or f == 'char':
     return True
   else:
     return False
 
 def is_simple(f):
-  if f in CONSTRUCT_CODE:
+  if f in CONSTRUCT_CODE and not is_string(f):
+    return True
+  else:
+    return False
+
+def entirely_simple(struct):
+  is_simple_list = [is_simple(f.type_id) for f in struct.fields]
+  if all(is_simple_list) or len(is_simple_list) == 0:
     return True
   else:
     return False
@@ -162,6 +168,7 @@ JENV.filters['mk_str_format_msg'] = mk_str_format_msg
 JENV.filters['mk_arg_list_msg'] = mk_arg_list_msg
 JENV.filters['entirely_simple'] = mk_arg_list
 JENV.filters['is_simple'] = is_simple
+JENV.filters['is_string'] = is_string
 JENV.filters['get_format_str'] = get_format_str
 
 def render_source(output_dir, package_spec):

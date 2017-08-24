@@ -10,6 +10,7 @@
  * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 #include <stdio.h>
+#include <ctype.h>
 #include "../include/libsbp/common.h"
 ((*- for i in includes *))
 #include "../include/libsbp/(((i)))"
@@ -75,10 +76,23 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   ((*- if (field.type_id|is_simple) -*))
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"(((field.identifier)))\": (((field|get_format_str)))", in->(((field.identifier))));
   ((= Nested type field =))
-  ((*- elif (field.type_id != "array") -*)) ((= nested type field=))
+  ((*- elif (field.type_id != "array" and not field.type_id|is_string) -*)) 
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"(((field.identifier)))\":");
   json_bufp += (((field.type_id|convert)))_to_json_str(&in->(((field.identifier))), json_end - json_bufp, json_bufp);
-  ((=Fixed size array =))
+  ((= fixed legth string (special type of fixed size array in our case) =))
+  ((*- elif (field|mk_id|is_string) and (field.options.get('size', None)) -*))
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"(((field.identifier)))\":\"");
+  for (int i=0; i < (((field.options.get('size').value))); i++) {
+    unsigned char c = in->(((field.identifier)))[i];
+    if (isprint(c) && c != '\\') {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
+    }
+    else {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
+    }
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
+  ((= fixed size array =))
   ((*- elif (field.type_id == "array" and field.options.get('size', None)) -*))
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"(((field.identifier)))\": {");
   ((=loop over fixed size array =))
