@@ -103,6 +103,20 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   json_bufp += (((field|mk_id)))_to_json_str(in->(((field.identifier))), json_end - json_bufp, json_bufp);
   ((*- endif -*))
     }
+  ((= check for no size which means  greedy array at end of message =))
+  ((*- elif not (field.options.get('size', None)) and field == m.fields[-1] -*))
+  ((*- if (field|mk_id|is_string) -*))
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"(((field.identifier)))\":\"");
+  for (int i=0; i < (uint8_t *) in + msg_len - (uint8_t *) &(in->(((field.identifier)))); i++) {
+    unsigned char c = in->(((field.identifier)))[i];
+    if (isprint(c) && c != '\\') {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
+    }
+    else {
+    json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
+    }
+  }
+  ((*- endif -*)) ((= end if string =))
   ((*- endif -*))
   ((*- endfor -*))
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
