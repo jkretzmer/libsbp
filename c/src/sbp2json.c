@@ -210,7 +210,8 @@ int msg_bootloader_handshake_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00B1_TO_JSON msg_bootloader_jump_to_app_t_to_json_str
 
@@ -363,7 +364,8 @@ int msg_fileio_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, 
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00A3_TO_JSON msg_fileio_read_resp_t_to_json_str
 
@@ -413,7 +415,8 @@ int msg_fileio_read_dir_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00AA_TO_JSON msg_fileio_read_dir_resp_t_to_json_str
 
@@ -461,7 +464,8 @@ int msg_fileio_remove_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00AD_TO_JSON msg_fileio_write_req_t_to_json_str
 
@@ -836,7 +840,8 @@ int msg_log_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_log_t * 
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_0402_TO_JSON msg_fwd_t_to_json_str
 
@@ -866,7 +871,8 @@ int msg_fwd_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_fwd_t * 
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_0012_TO_JSON msg_tweet_t_to_json_str
 
@@ -924,7 +930,8 @@ int msg_print_dep_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_pr
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
 
 
@@ -2479,7 +2486,8 @@ int msg_command_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00B9_TO_JSON msg_command_resp_t_to_json_str
 
@@ -2520,7 +2528,8 @@ int msg_command_output_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00BA_TO_JSON msg_network_state_req_t_to_json_str
 
@@ -2674,7 +2683,8 @@ int msg_settings_write_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00A4_TO_JSON msg_settings_read_req_t_to_json_str
 
@@ -2702,7 +2712,8 @@ int msg_settings_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00A5_TO_JSON msg_settings_read_resp_t_to_json_str
 
@@ -2730,7 +2741,8 @@ int msg_settings_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_le
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00A2_TO_JSON msg_settings_read_by_index_req_t_to_json_str
 
@@ -2771,7 +2783,8 @@ int msg_settings_read_by_index_resp_t_to_json_str( u16 sender_id, u16 msg_type, 
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_00A6_TO_JSON msg_settings_read_by_index_done_t_to_json_str
 
@@ -2818,7 +2831,8 @@ int msg_settings_register_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
 
 
@@ -2876,7 +2890,8 @@ int msg_dgnss_status_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg
     else {
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
-  }json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
+  }
+  json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
   return json_bufp - out_str;} 
  #define MSG_FFFF_TO_JSON msg_heartbeat_t_to_json_str
 
