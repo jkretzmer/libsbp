@@ -13,7 +13,7 @@ return read(0, buff, n);
 
 
 
- 
+
 s8 sbp_process_json(sbp_state_t *s, u32 (*read)(u8 *buff, u32 n, void* context ))
 {
   u8 temp;
@@ -84,7 +84,7 @@ s8 sbp_process_json(sbp_state_t *s, u32 (*read)(u8 *buff, u32 n, void* context )
         char out_str[4096];
         s8 ret = sbp2json(s->sender_id, s->msg_type, s->msg_len,
                                      s->msg_buff, 4096, out_str);
-        printf("%s,\n", out_str);
+        printf("%s\n", out_str);
         return ret;
       } else {
         return SBP_CRC_ERROR;
