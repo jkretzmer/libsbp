@@ -113,7 +113,7 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   for (int i=0; i < (((field.options.get('size').value))); i++) {
 
   ((*- elif field == m.fields[-1] -*))  ((= variablelength array only at end =))
-  for (int i=0; i * sizeof( (((field|mk_id))) )  <= (msg_len - sizeof( (((field|mk_id))) )); i++) {
+  for (int i=0; i+1 * sizeof( (((field|mk_id))) ) <= (msg_len); i++) {
   ((*- endif -*))  ((= variable vs fixed =))
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   ((* if (field|mk_id|is_simple) -*))
