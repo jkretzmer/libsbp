@@ -195,7 +195,7 @@ int msg_acq_sv_profile_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"acq_sv_profile\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( acq_sv_profile_t )  <= (msg_len - sizeof( acq_sv_profile_t )); i++) {
+  for (int i=0; i+1 * sizeof( acq_sv_profile_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += acq_sv_profile_t_to_json_str(&(in->acq_sv_profile[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -343,7 +343,7 @@ int msg_bootloader_handshake_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"handshake\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( u8 )  <= (msg_len - sizeof( u8 )); i++) {
+  for (int i=0; i+1 * sizeof( u8 ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->handshake[i]);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -463,7 +463,7 @@ int msg_fileio_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( u8 )  <= (msg_len - sizeof( u8 )); i++) {
+  for (int i=0; i+1 * sizeof( u8 ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->contents[i]);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -529,7 +529,7 @@ int msg_fileio_read_dir_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( u8 )  <= (msg_len - sizeof( u8 )); i++) {
+  for (int i=0; i+1 * sizeof( u8 ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->contents[i]);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -604,7 +604,7 @@ int msg_fileio_write_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"data\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( u8 )  <= (msg_len - sizeof( u8 )); i++) {
+  for (int i=0; i+1 * sizeof( u8 ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->data[i]);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -675,7 +675,7 @@ int msg_flash_program_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"data\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( u8 )  <= (msg_len - sizeof( u8 )); i++) {
+  for (int i=0; i+1 * sizeof( u8 ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->data[i]);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -1543,7 +1543,7 @@ int msg_obs_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_t * 
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( packed_obs_content_t )  <= (msg_len - sizeof( packed_obs_content_t )); i++) {
+  for (int i=0; i+1 * sizeof( packed_obs_content_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += packed_obs_content_t_to_json_str(&(in->obs[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -2631,7 +2631,7 @@ int msg_obs_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( packed_obs_content_dep_a_t )  <= (msg_len - sizeof( packed_obs_content_dep_a_t )); i++) {
+  for (int i=0; i+1 * sizeof( packed_obs_content_dep_a_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += packed_obs_content_dep_a_t_to_json_str(&(in->obs[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -2659,7 +2659,7 @@ int msg_obs_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( packed_obs_content_dep_b_t )  <= (msg_len - sizeof( packed_obs_content_dep_b_t )); i++) {
+  for (int i=0; i+1 * sizeof( packed_obs_content_dep_b_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += packed_obs_content_dep_b_t_to_json_str(&(in->obs[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -2687,7 +2687,7 @@ int msg_obs_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( packed_obs_content_dep_c_t )  <= (msg_len - sizeof( packed_obs_content_dep_c_t )); i++) {
+  for (int i=0; i+1 * sizeof( packed_obs_content_dep_c_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += packed_obs_content_dep_c_t_to_json_str(&(in->obs[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -3523,7 +3523,7 @@ int msg_specan_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_speca
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"amplitude_value\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( u8 )  <= (msg_len - sizeof( u8 )); i++) {
+  for (int i=0; i+1 * sizeof( u8 ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->amplitude_value[i]);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -3988,7 +3988,7 @@ int msg_tracking_state_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( tracking_channel_state_t )  <= (msg_len - sizeof( tracking_channel_state_t )); i++) {
+  for (int i=0; i+1 * sizeof( tracking_channel_state_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += tracking_channel_state_t_to_json_str(&(in->states[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -4061,7 +4061,7 @@ int msg_tracking_state_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( tracking_channel_state_dep_a_t )  <= (msg_len - sizeof( tracking_channel_state_dep_a_t )); i++) {
+  for (int i=0; i+1 * sizeof( tracking_channel_state_dep_a_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += tracking_channel_state_dep_a_t_to_json_str(&(in->states[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -4108,7 +4108,7 @@ int msg_tracking_state_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( tracking_channel_state_dep_b_t )  <= (msg_len - sizeof( tracking_channel_state_dep_b_t )); i++) {
+  for (int i=0; i+1 * sizeof( tracking_channel_state_dep_b_t ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += tracking_channel_state_dep_b_t_to_json_str(&(in->states[i]), json_end - json_bufp, json_bufp);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
@@ -4147,7 +4147,7 @@ int msg_user_data_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_us
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0; i * sizeof( u8 )  <= (msg_len - sizeof( u8 )); i++) {
+  for (int i=0; i+1 * sizeof( u8 ) <= (msg_len); i++) {
     if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "%hhu", in->contents[i]);}
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");json_bufp += snprintf(json_bufp, json_end - json_bufp, "}");
