@@ -195,7 +195,9 @@ int msg_acq_sv_profile_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"acq_sv_profile\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( acq_sv_profile_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->acq_sv_profile)); i++) {
+  for (int i=0;  ((i+1) * sizeof( acq_sv_profile_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acq_sv_profile)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( acq_sv_profile_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acq_sv_profile)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -322,6 +324,8 @@ int msg_nap_device_dna_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 8; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->dna)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -347,7 +351,9 @@ int msg_bootloader_handshake_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"handshake\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->handshake)); i++) {
+  for (int i=0;  ((i+1) * sizeof( u8 ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->handshake)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->handshake)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -469,7 +475,9 @@ int msg_fileio_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->contents)); i++) {
+  for (int i=0;  ((i+1) * sizeof( u8 ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->contents)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->contents)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -537,7 +545,9 @@ int msg_fileio_read_dir_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->contents)); i++) {
+  for (int i=0;  ((i+1) * sizeof( u8 ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->contents)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->contents)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -614,7 +624,9 @@ int msg_fileio_write_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"data\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->data)); i++) {
+  for (int i=0;  ((i+1) * sizeof( u8 ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->data)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->data)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -677,6 +689,8 @@ int msg_flash_program_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->addr_start)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -689,7 +703,9 @@ int msg_flash_program_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"data\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->data)); i++) {
+  for (int i=0;  ((i+1) * sizeof( u8 ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->data)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->data)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -733,6 +749,8 @@ int msg_flash_read_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->addr_start)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -768,6 +786,8 @@ int msg_flash_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, 
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->addr_start)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -852,6 +872,8 @@ int msg_stm_unique_id_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_le
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 12; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->stm_id)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -879,6 +901,8 @@ int msg_m25_flash_write_status_t_to_json_str( u16 sender_id, u16 msg_type, u8 ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 1; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->status)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1567,7 +1591,9 @@ int msg_obs_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_t * 
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
+  for (int i=0;  ((i+1) * sizeof( packed_obs_content_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( packed_obs_content_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1911,6 +1937,8 @@ int msg_ephemeris_sbas_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->pos)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1921,6 +1949,8 @@ int msg_ephemeris_sbas_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->vel)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1931,6 +1961,8 @@ int msg_ephemeris_sbas_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acc)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1978,6 +2010,8 @@ int msg_ephemeris_glo_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->pos)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1988,6 +2022,8 @@ int msg_ephemeris_glo_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->vel)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1998,6 +2034,8 @@ int msg_ephemeris_glo_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acc)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2029,6 +2067,8 @@ int msg_ephemeris_sbas_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->pos)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2039,6 +2079,8 @@ int msg_ephemeris_sbas_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->vel)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2049,6 +2091,8 @@ int msg_ephemeris_sbas_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acc)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2096,6 +2140,8 @@ int msg_ephemeris_glo_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->pos)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2106,6 +2152,8 @@ int msg_ephemeris_glo_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->vel)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2116,6 +2164,8 @@ int msg_ephemeris_glo_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acc)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2159,6 +2209,8 @@ int msg_ephemeris_glo_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->pos)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2169,6 +2221,8 @@ int msg_ephemeris_glo_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->vel)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2179,6 +2233,8 @@ int msg_ephemeris_glo_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_l
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acc)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2226,6 +2282,8 @@ int msg_ephemeris_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->pos)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2236,6 +2294,8 @@ int msg_ephemeris_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->vel)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2246,6 +2306,8 @@ int msg_ephemeris_glo_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( double ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->acc)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2693,7 +2755,9 @@ int msg_obs_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_a_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
+  for (int i=0;  ((i+1) * sizeof( packed_obs_content_dep_a_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( packed_obs_content_dep_a_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2723,7 +2787,9 @@ int msg_obs_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_b_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
+  for (int i=0;  ((i+1) * sizeof( packed_obs_content_dep_b_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( packed_obs_content_dep_b_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2753,7 +2819,9 @@ int msg_obs_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_c_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
+  for (int i=0;  ((i+1) * sizeof( packed_obs_content_dep_c_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( packed_obs_content_dep_c_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->obs)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -3503,6 +3571,8 @@ int msg_network_state_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_le
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 4; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->ipv4_address)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -3517,6 +3587,8 @@ int msg_network_state_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_le
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 16; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->ipv6_address)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -3595,7 +3667,9 @@ int msg_specan_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_speca
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"amplitude_value\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->amplitude_value)); i++) {
+  for (int i=0;  ((i+1) * sizeof( u8 ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->amplitude_value)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->amplitude_value)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4062,7 +4136,9 @@ int msg_tracking_state_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->states)); i++) {
+  for (int i=0;  ((i+1) * sizeof( tracking_channel_state_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->states)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( tracking_channel_state_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->states)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4106,6 +4182,8 @@ int msg_tracking_iq_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
 
   for (int i=0; i < 3; i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( tracking_channel_correlation_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->corrs)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4139,7 +4217,9 @@ int msg_tracking_state_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_dep_a_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->states)); i++) {
+  for (int i=0;  ((i+1) * sizeof( tracking_channel_state_dep_a_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->states)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( tracking_channel_state_dep_a_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->states)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4188,7 +4268,9 @@ int msg_tracking_state_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_dep_b_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->states)); i++) {
+  for (int i=0;  ((i+1) * sizeof( tracking_channel_state_dep_b_t ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->states)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( tracking_channel_state_dep_b_t ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->states)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4229,7 +4311,9 @@ int msg_user_data_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_us
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->contents)); i++) {
+  for (int i=0;  ((i+1) * sizeof( u8 ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->contents)); i++) {
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( u8 ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->contents)) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }

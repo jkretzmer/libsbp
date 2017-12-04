@@ -113,8 +113,10 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   for (int i=0; i < (((field.options.get('size').value))); i++) {
 
   ((*- elif field == m.fields[-1] -*))  ((= variablelength array only at end =))
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( (((field|mk_id))) ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->(((field.identifier))))); i++) {
+  for (int i=0;  ((i+1) * sizeof( (((field|mk_id))) ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->(((field.identifier))))); i++) {
     ((*- endif -*))  ((= variable vs fixed =))
+    printf("i+1 * sizeof: %lu\n", ((i+1) * sizeof( (((field|mk_id))) ) ) );
+    printf("array size: %d\n", (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->(((field.identifier))))) );
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
