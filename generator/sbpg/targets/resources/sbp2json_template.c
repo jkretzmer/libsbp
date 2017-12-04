@@ -80,7 +80,7 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   ((= Nested type field =))
   ((*- elif (field.type_id != "array" and not field.type_id|is_string) -*))
   json_bufp += (((field.type_id|convert)))_to_json_str(&in->(((field.identifier))), json_end - json_bufp, json_bufp);
-  ((= fixed length string (special type of fixed size array in our case) =))
+  ((= fixed legnth string (special type of fixed size array in our case) =))
   ((*- elif (field|mk_id|is_string) and (field.options.get('size', None)) -*))
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
   for (int i=0; i < (((field.options.get('size').value))); i++) {
@@ -98,10 +98,10 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   for (int i=0; i < (uint8_t *) in + msg_len - (uint8_t *) &(in->(((field.identifier)))); i++) {
     unsigned char c = in->(((field.identifier)))[i];
     if (isprint(c) && c != '\\') {
-    json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
+      json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
     }
     else {
-    json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
+      json_bufp += snprintf(json_bufp, json_end - json_bufp, "\\\\u00%02x", c);
     }
   }
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
@@ -113,14 +113,18 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   for (int i=0; i < (((field.options.get('size').value))); i++) {
 
   ((*- elif field == m.fields[-1] -*))  ((= variablelength array only at end =))
-  for (int i=0; i * sizeof( (((field|mk_id))) )  < msg_len; i++) {
-  ((*- endif -*))  ((= variable vs fixed =))
-    if (i != 0) json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
-  ((* if (field|mk_id|is_simple) -*))
+  for (int i=0;  (unsigned) ((i+1) * sizeof( (((field|mk_id))) ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->(((field.identifier)))); i++) {
+    ((*- endif -*))  ((= variable vs fixed =))
+    if (i != 0){
+      json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
+    }
+    ((* if (field|mk_id|is_simple) -*))
     json_bufp += snprintf(json_bufp, json_end - json_bufp, "(((field|get_format_str)))", in->(((field.identifier)))[i]);
-  ((*- else -*))
-    json_bufp += (((field|mk_id)))_to_json_str(in->(((field.identifier))), json_end - json_bufp, json_bufp);
-  ((*- endif -*))
+
+    ((*- else -*))
+    json_bufp += (((field|mk_id)))_to_json_str(&(in->(((field.identifier)))[i]), json_end - json_bufp, json_bufp);
+
+    ((*- endif -*))
   }
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "]");
   ((*- endif -*))
@@ -132,6 +136,7 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
 ((* endfor *))
 ((* endwith *))
 ((* endfor *))
+
 
 int sbp2json(u16 sender_id, u16 msg_type, u8 msg_len,
                        u8 payload[], uint64_t max_len, char* out_str) {
