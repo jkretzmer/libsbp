@@ -125,9 +125,9 @@ START_TEST( test_auto_check_sbp_navigation_11 )
     msg_gps_time_dep_a_t* msg = ( msg_gps_time_dep_a_t *)((void *)last_msg + 6);
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
-    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->tow == 2567800, "incorrect value for tow, expected 2567800, is %d", msg->tow);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->ns_residual == 0, "incorrect value for ns_residual, expected 0, is %d", msg->ns_residual);
     // print to string
     char test_str[1024];
@@ -173,9 +173,9 @@ START_TEST( test_auto_check_sbp_navigation_11 )
     msg_gps_time_dep_a_t* msg = ( msg_gps_time_dep_a_t *)((void *)last_msg + 6);
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
-    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->tow == 2567900, "incorrect value for tow, expected 2567900, is %d", msg->tow);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->ns_residual == 0, "incorrect value for ns_residual, expected 0, is %d", msg->ns_residual);
     // print to string
     char test_str[1024];
@@ -221,9 +221,9 @@ START_TEST( test_auto_check_sbp_navigation_11 )
     msg_gps_time_dep_a_t* msg = ( msg_gps_time_dep_a_t *)((void *)last_msg + 6);
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
-    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->tow == 2568000, "incorrect value for tow, expected 2568000, is %d", msg->tow);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->ns_residual == 0, "incorrect value for ns_residual, expected 0, is %d", msg->ns_residual);
     // print to string
     char test_str[1024];
@@ -269,9 +269,9 @@ START_TEST( test_auto_check_sbp_navigation_11 )
     msg_gps_time_dep_a_t* msg = ( msg_gps_time_dep_a_t *)((void *)last_msg + 6);
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
-    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->tow == 2568100, "incorrect value for tow, expected 2568100, is %d", msg->tow);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->ns_residual == 0, "incorrect value for ns_residual, expected 0, is %d", msg->ns_residual);
     // print to string
     char test_str[1024];
@@ -317,9 +317,9 @@ START_TEST( test_auto_check_sbp_navigation_11 )
     msg_gps_time_dep_a_t* msg = ( msg_gps_time_dep_a_t *)((void *)last_msg + 6);
     // Run tests against fields
     fail_unless(msg != 0, "stub to prevent warnings if msg isn't used");
-    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->tow == 2568200, "incorrect value for tow, expected 2568200, is %d", msg->tow);
     fail_unless(msg->flags == 0, "incorrect value for flags, expected 0, is %d", msg->flags);
+    fail_unless(msg->wn == 1787, "incorrect value for wn, expected 1787, is %d", msg->wn);
     fail_unless(msg->ns_residual == 0, "incorrect value for ns_residual, expected 0, is %d", msg->ns_residual);
     // print to string
     char test_str[1024];
