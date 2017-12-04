@@ -195,7 +195,7 @@ int msg_acq_sv_profile_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"acq_sv_profile\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( acq_sv_profile_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->acq_sv_profile); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( acq_sv_profile_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->acq_sv_profile)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -347,7 +347,7 @@ int msg_bootloader_handshake_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"handshake\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->handshake); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->handshake)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -469,7 +469,7 @@ int msg_fileio_read_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->contents); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->contents)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -537,7 +537,7 @@ int msg_fileio_read_dir_resp_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->contents); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->contents)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -614,7 +614,7 @@ int msg_fileio_write_req_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len,
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"data\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->data); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->data)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -689,7 +689,7 @@ int msg_flash_program_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, ms
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"data\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->data); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->data)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -1567,7 +1567,7 @@ int msg_obs_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_obs_t * 
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->obs); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2693,7 +2693,7 @@ int msg_obs_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_a_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->obs); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_a_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2723,7 +2723,7 @@ int msg_obs_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_b_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->obs); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_b_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -2753,7 +2753,7 @@ int msg_obs_dep_c_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_ob
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"obs\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_c_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->obs); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( packed_obs_content_dep_c_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->obs)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -3595,7 +3595,7 @@ int msg_specan_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_speca
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"amplitude_value\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->amplitude_value); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->amplitude_value)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4062,7 +4062,7 @@ int msg_tracking_state_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, m
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->states); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->states)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4139,7 +4139,7 @@ int msg_tracking_state_dep_a_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_dep_a_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->states); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_dep_a_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->states)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4188,7 +4188,7 @@ int msg_tracking_state_dep_b_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"states\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_dep_b_t ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->states); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( tracking_channel_state_dep_b_t ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->states)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
@@ -4229,7 +4229,7 @@ int msg_user_data_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_us
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"contents\": ");
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "[");
-  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (uint8_t *) in + msg_len - (uint8_t *) &(in->contents); i++) {
+  for (int i=0;  (unsigned int) ((i+1) * sizeof( u8 ) ) <= (unsigned int)((uint8_t *) in + msg_len - (uint8_t *) &(in->contents)); i++) {
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");
     }
