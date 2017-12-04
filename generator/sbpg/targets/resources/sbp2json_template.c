@@ -142,6 +142,8 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
 
 int sbp2json(u16 sender_id, u16 msg_type, u8 msg_len,
                        u8 payload[], uint64_t max_len, char* out_str) {
+printf("sbp2json executing...\n");
+return 0;
 switch(msg_type) {
 ((*- for spec in package_specs *))
 ((*- with *))

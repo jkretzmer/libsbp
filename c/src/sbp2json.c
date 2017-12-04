@@ -4328,6 +4328,8 @@ int msg_user_data_t_to_json_str( u16 sender_id, u16 msg_type, u8 msg_len, msg_us
 
 int sbp2json(u16 sender_id, u16 msg_type, u8 msg_len,
                        u8 payload[], uint64_t max_len, char* out_str) {
+printf("sbp2json executing...\n");
+return 0;
 switch(msg_type) {
   case 31:
     return msg_acq_result_t_to_json_str(sender_id, msg_type, msg_len, ( msg_acq_result_t *) payload,
