@@ -9,7 +9,8 @@
  * EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
- #include <stdio.h>
+#include <stdio.h>
+#include <ctype.h>
 #include "../include/libsbp/common.h"
 ((*- for i in includes *))
 #include "../include/libsbp/(((i)))"
@@ -80,7 +81,7 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   ((*- for field in m.fields *))
     ((*- if (field.type_id|is_simple) *))
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"(((field.identifier)))\": (((field|get_format_str)))", in->(((field.identifier))));
-    ((*- elif (field.type_id != "array") *))
+    ((*- elif (field.type_id != "array" and not field.type_id|is_string) *))
   json_bufp += snprintf(json_bufp, json_end - json_bufp, ", \"(((field.identifier)))\":");
   json_bufp += (((field.type_id|convert)))_to_json_str(&in->(((field.identifier))), json_end - json_bufp, json_bufp);
     ((*- elif (field.type_id == "array" and field.options.get('size', None)) -*))
