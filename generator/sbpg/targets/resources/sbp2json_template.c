@@ -95,7 +95,7 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
   ((*- elif (field|mk_id|is_string and not (field.options.get('size', None))) -*))
   json_bufp += snprintf(json_bufp, json_end - json_bufp, "\"");
-  for (int i=0; i < (uint8_t *) in + msg_len - (uint8_t *) &(in->(((field.identifier)))); i++) {
+  for (int i=0; i < (uint8_t *) in + msg_len - (uint8_t *) (in->(((field.identifier)))); i++) {
     unsigned char c = in->(((field.identifier)))[i];
     if (isprint(c) && c != '\\') {
       json_bufp += snprintf(json_bufp, json_end - json_bufp, "%c", c);
@@ -113,7 +113,7 @@ int (((m.identifier|convert)))_to_json_str( (((in_ptr_type))) * in, uint64_t max
   for (int i=0; i < (((field.options.get('size').value))); i++) {
 
   ((*- elif field == m.fields[-1] -*))  ((= variablelength array only at end =))
-  for (int i=0;  (unsigned int)((i+1) * sizeof( (((field|mk_id))) ) ) <= (uint8_t)((uint8_t *) (in + msg_len) - (uint8_t *) &(in->(((field.identifier))))); i++) {
+  for (int i=0;  (unsigned int)((i+1) * sizeof( (((field|mk_id))) ) ) <= ((uint8_t *)in + msg_len) -((uint8_t *)&(in->(((field.identifier))))) ; i++) {
     ((*- endif -*))  ((= variable vs fixed =))
     if (i != 0){
       json_bufp += snprintf(json_bufp, json_end - json_bufp, ", ");

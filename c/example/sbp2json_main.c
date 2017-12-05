@@ -6,7 +6,7 @@
 
 #define SBP_PREAMBLE 0x55
 
-ssize_t read_json(u8 *buff, u32 n, void* context) {
+u32 read_json(u8 *buff, u32 n, void* context) {
 (void) context;
 return read(0, buff, n);
 }
